@@ -20,22 +20,28 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         if (values.password === values.verifyPassword) {
-            console.log(values);
+            let now = new Date();
+            let todayYear = now.getFullYear;
+            let todayMonth = now.getMonth() + 1;
+            let todayDate = now.getDate();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const nowDate = `${todayDate}-${todayMonth}-${todayYear} ${hours}:${minutes}`;
             fetch(BaseUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    userCreatedWhen: "string",
-                    userEmail: "string",
-                    userId: "h13",
-                    userNickName: "string",
+                    userCreatedWhen: nowDate,
+                    userEmail: values.eMail,
+                    userId: values.id,
+                    userNickName: values.nickName,
                     userNotify: true,
-                    userPw: "123123123",
+                    userPw: values.password,
                 }),
             });
 
             alert("이제 로그인 하여 We로 서비스를 이용해보세요!!");
-            // document.location.href = "/";
+            document.location.href = "/";
         } else {
             alert("Verify Password에 Password와 같은 값을 입력해 주세요.");
         }

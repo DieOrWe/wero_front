@@ -21,12 +21,12 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         if (values.password === values.verifyPassword) {
             let now = new Date();
-            let todayYear = now.getFullYear;
+            let todayYear = now.getFullYear();
             let todayMonth = now.getMonth() + 1;
             let todayDate = now.getDate();
             let hours = now.getHours();
             let minutes = now.getMinutes();
-            const nowDate = `${todayDate}-${todayMonth}-${todayYear} ${hours}:${minutes}`;
+            const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
             fetch(BaseUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

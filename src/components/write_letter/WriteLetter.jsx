@@ -31,15 +31,18 @@ const WriteLetter = props => {
             </div>
             <div className='mx-20 mt-16'>
                 <textarea onChange={handleChange} name='content' value={letter.content} className='w-full border-b-2 border-black h-96' placeholder='오늘의 이야기를 들려주세요. :)' />
-                <div className='flex items-center mt-4 space-x-2'>
-                    <input type="checkbox" onClick={handleCheck} className='w-4 h-4' name="" id="" />
-                    <p>편지 공개</p>
-                <button
-                    onClick={handleClick}
-                    className='absolute h-10 mt-16 bg-black right-20 md:h-12 w-36 md:w-52 rounded-2xl text-slate-200 border-slate-300'
-                >전송</button>
+                <div className='flex items-center justify-between mt-4 space-x-2'>
+                    <div className='flex items-center'>
+                        <input type="checkbox" onClick={handleCheck} className='w-4 h-4' name="" id="" />
+                        <p>편지 공개</p>
+                    </div>
+                    <button
+                        onClick={handleClick}
+                        className='h-10 mt-16 bg-black right-20 md:h-12 w-36 md:w-52 rounded-2xl text-slate-200 border-slate-300'
+                    >전송</button>
                 </div>
             </div>
+            <div className='h-16'></div>
         </div>
     )
 }

@@ -21,6 +21,7 @@ const FirstSettingPage = props => {
                 <Route path='/userInfo/changeUserInfo/*' element={<ChangePersonalInfo />}></Route>
                 <Route path='/alarmSetting/*' element={<AlarmSetting />}></Route>
             </Routes>
+            <div className='h-72'></div>
         </div>
     )
 }

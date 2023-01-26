@@ -19,7 +19,7 @@ const FindPw = props => {
     }
     return (
         <div className='flex flex-col items-center'>
-            <div className='absolute h-screen bg-white'>
+            <div className='h-full bg-white'>
                 <div className='mx-60 md:mx-96'></div>
                 <div className='ml-10 md:ml-44'>
                     <div className='mt-24 text-slate-700'>
@@ -31,7 +31,7 @@ const FindPw = props => {
                             name='id'
                             value={values.id}
                             onChange={handleChange}
-                            className="h-12 pl-2 text-lg font-mono gap-2 my-3 border-b-2 border-gray-400 border-solid w-96"
+                            className="h-12 gap-2 pl-2 my-3 font-mono text-lg border-b-2 border-gray-400 border-solid w-96"
                             placeholder='ID'
                         />
                         <br />
@@ -39,7 +39,7 @@ const FindPw = props => {
                             name='email'
                             value={values.email}
                             onChange={handleChange}
-                            className="h-12 pl-2 text-lg font-mono gap-2 my-3 border-b-2 border-gray-400 border-solid w-96"
+                            className="h-12 gap-2 pl-2 my-3 font-mono text-lg border-b-2 border-gray-400 border-solid w-96"
                             placeholder='E-mail'
                         />
                     </div>
@@ -47,15 +47,15 @@ const FindPw = props => {
                         <p className='mt-10'>가입하신 ID와 이메일을 적어주세요.</p>
                         <p className='mt-3'>해당 이메일로 비밀번호를 보내드릴게요!</p>
                     </div>
-                    <div className='flex ml-56 mt-20 space-x-3 text-base text-slate-600'>
+                    <div className='flex mt-20 ml-56 space-x-3 text-base text-slate-600'>
                         <Link to='/findId' className='border-b-2 border-slate-300'>아이디 찾기</Link>
                         <Link to='/' className='border-b-2 border-slate-300'>로그인</Link>
                     </div>
                     <button onClick={handleSubmit}
-                        className='mt-28 h-14 rounded-md text-slate-200 bg-black w-96 border-slate-300'
+                        className='bg-black rounded-md mt-28 h-14 text-slate-200 w-96 border-slate-300'
                     >Send E-mail</button>
                     <div className='flex'>
-                        <p className='text-sm mt-3 ml-80 border-b-2 border-slate-300'>고객센터</p>
+                        <p className='mt-3 text-sm border-b-2 ml-80 border-slate-300'>고객센터</p>
                     </div>
                 </div>
             </div>

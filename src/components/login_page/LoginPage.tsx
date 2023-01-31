@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// @ts-ignore
-import Login from './Login.tsx'
+import Login from './Login'
 
 const LoginPage = () => {
     return (

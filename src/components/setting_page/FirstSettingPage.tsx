@@ -6,7 +6,7 @@ import MyPage from './MyPage'
 import Setting from './Setting'
 import UserInfo from './UserInfo'
 
-const FirstSettingPage = props => {
+const FirstSettingPage = () => {
     return (
         <div>
             <div className='flex mb-3 ml-10 text-3xl font-bold mt-14'>

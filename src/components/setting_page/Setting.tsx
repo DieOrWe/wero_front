@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Setting = props => {
+const Setting = () => {
     return (
         <div>
             <div className='flex flex-col space-y-2 mt-20 mx-20'>

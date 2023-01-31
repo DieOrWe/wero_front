@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-const WriteLetter = props => {
+const WriteLetter = () => {
     const [letter, setLetter] = useState({
         nickName: '',
         content: '',
         isCheck: false,
     });
-    const handleChange = e => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setLetter({
             ...letter,
             [e.target.name]: e.target.value,

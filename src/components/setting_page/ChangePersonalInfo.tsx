@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const ChangePersonalInfo = props => {
+const ChangePersonalInfo = () => {
     const [values, setValues] = useState({
         id: "",
         password: "",
@@ -10,14 +10,14 @@ const ChangePersonalInfo = props => {
         eMail: "",
     });
 
-    const handleChange = e => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({
             ...values,
             [e.target.name]: e.target.value,
         })
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (values.password === values.verifyPassword) {
             alert('개인정보 변경이 완료되었습니다.')
             document.location.href = '/';

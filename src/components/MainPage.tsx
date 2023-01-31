@@ -5,21 +5,23 @@ import LetterStorge from './letter_storge/LetterStorge';
 import FirstSettingPage from './setting_page/FirstSettingPage';
 import WriteLetter from './write_letter/WriteLetter';
 
-const MainPage = props => {
+const MainPage = () => {
     const [topButton, setTopButton] = useState({
         email: '_clicked',
         write: '',
         setting: '',
         notification: '',
     })
-    const handleClick = e => {
+    const handleClick = (e: React.MouseEvent) => {
+        const target = e.target as Element;
         setTopButton({
             email: '',
             write: '',
             setting: '',
             notification: '',
-            [e.target.alt]: '_clicked',
+            [target.className]: '_clicked',
         });
+
     }
 
     const onLogout = () => {
@@ -33,10 +35,10 @@ const MainPage = props => {
                 <div className='h-full bg-white'>
                     <div className='mx-56 md:mx-96'></div>
                     <div className='flex justify-end mt-8 mr-8 space-x-5'>
-                        <Link to='/'><img src={`img/Email${topButton.email}.png`} alt="email" onClick={handleClick} /></Link>
-                        <Link to='/write'><img src={`img/Write${topButton.write}.png`} alt="write" onClick={handleClick} /></Link>
-                        <Link to='/setting'><img src={`img/Setting${topButton.setting}.png`} alt="setting" onClick={handleClick} /></Link>
-                        <Link to='/notification'><img src={`img/Notification${topButton.notification}.png`} alt="notification" onClick={handleClick} /></Link>
+                        <Link to='/'><button onClick={handleClick}><img className='email' src={`img/Email${topButton.email}.png`} alt="email" /></button></Link>
+                        <Link to='/write'><button onClick={handleClick}><img className='write' src={`img/Write${topButton.write}.png`} alt="write" /></button></Link>
+                        <Link to='/setting'><button onClick={handleClick}><img className='setting' src={`img/Setting${topButton.setting}.png`} alt="setting" /></button></Link>
+                        <Link to='/notification'><button onClick={handleClick}><img className='notification' src={`img/Notification${topButton.notification}.png`} alt="notification" /></button></Link>
                         <img onClick={onLogout} src="img/Logout.png" alt="logout" />
                     </div>
                     <div>

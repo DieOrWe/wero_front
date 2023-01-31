@@ -2,14 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const AlarmSetting = props => {
+const AlarmSetting = () => {
     const [pushStatus, setPushStatus] = useState(true);
     const [receiveStatus, setReceiveStatus] = useState(true);
 
-    const onPushChangeToggle = e => {
+    const onPushChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPushStatus(!pushStatus);
     }
-    const onReceiveChangeToggle = e => {
+    const onReceiveChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setReceiveStatus(!receiveStatus);
     }
 

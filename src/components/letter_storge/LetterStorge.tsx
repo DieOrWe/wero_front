@@ -6,7 +6,7 @@ import NotReadLetter from './NotReadLetter'
 import SendLetter from './SendLetter'
 import './LetterStorage.css'
 
-const LetterStorge = props => {
+const LetterStorge = () => {
     return (
         <div>
             <div className='flex mb-3 ml-10 text-3xl font-bold mt-14'>

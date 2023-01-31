@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Letter.css'
 
 const dummyData = [
@@ -21,14 +21,31 @@ const dummyData = [
         date: '2023.01.18',
         content: '3번입니다.',
     },
-
 ]
 
-const SendLetter = props => {
-    const [letter, setLetter] = useState({});
+interface MailData {
+    state: string,
+    nickName: string,
+    letterName: string,
+    date: string,
+    content: string,
+}
+
+interface ReadMail {
+    letterName: string,
+    content: string,
+    nickName: string,
+}
+
+const SendLetter = () => {
+    const [letter, setLetter] = useState<ReadMail>({
+        letterName: '',
+        content: '',
+        nickName: '',
+    });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = data => {
+    const handleShow = (data: MailData) => {
         setLetter({
             letterName: data.letterName,
             content: data.content,
@@ -37,10 +54,16 @@ const SendLetter = props => {
         setShow(true);
     }
 
+    const [letters, setLetters] = useState<MailData[]>([]);
+
+    useEffect(() => {
+        setLetters(dummyData);
+    }, []);
+
     return (
         <div className='mt-12 ml-20 mr-20'>
             <ol style={{ listStyleType: 'decimal' }} reversed>
-                {dummyData.map((data, index) => {
+                {letters.map((data, index) => {
                     return (
                         <div key={index} onClick={() => handleShow(data)} className='flex justify-between py-2 mb-3 border-b-2'>
                             <div className='flex space-x-4'>

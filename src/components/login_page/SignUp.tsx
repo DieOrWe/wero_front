@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
     const BaseUrl = "http://localhost:8080/api/user";
-    const focusRef = useRef();
+    const focusRef = useRef<any>();
     const [values, setValues] = useState({
         id: "",
         password: "",
@@ -11,14 +11,14 @@ const SignUp = () => {
         eMail: "",
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({
             ...values,
             [e.target.name]: e.target.value,
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         if (values.password === values.verifyPassword) {
             let now = new Date();
             let todayYear = now.getFullYear();
@@ -51,7 +51,7 @@ const SignUp = () => {
         focusRef.current.focus();
     }, []);
 
-    const onEnter = (e) => {
+    const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             handleSubmit();
         }

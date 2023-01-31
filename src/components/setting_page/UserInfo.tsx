@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const UserInfo = props => {
+const UserInfo = () => {
     return (
         <div>
             <div className='flex flex-col mt-8 mx-20'>

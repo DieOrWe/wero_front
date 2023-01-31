@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MyPage = props => {
+const MyPage = () => {
     const post = 0;
     const get = 0;
     return (

@@ -1,14 +1,19 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const FindId = props => {
-    const [email, setEmail] = useState('');
-    const handleChange = e => {
-        setEmail(e.target.value);
+const FindPw = () => {
+    const [values, setValues] = useState({
+        id: '',
+        email: '',
+    });
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+        });
     }
     const handleSubmit = () => {
-        console.log(email);
+        console.log(values);
         alert('이메일로 ID가 전송되었습니다!')
         document.location.href = '/';
     }
@@ -23,19 +28,27 @@ const FindId = props => {
                     </div>
                     <div className='mt-10'>
                         <input type='text'
-                            name='eMail'
-                            value={email}
+                            name='id'
+                            value={values.id}
+                            onChange={handleChange}
+                            className="h-12 gap-2 pl-2 my-3 font-mono text-lg border-b-2 border-gray-400 border-solid w-96"
+                            placeholder='ID'
+                        />
+                        <br />
+                        <input type='text'
+                            name='email'
+                            value={values.email}
                             onChange={handleChange}
                             className="h-12 gap-2 pl-2 my-3 font-mono text-lg border-b-2 border-gray-400 border-solid w-96"
                             placeholder='E-mail'
                         />
                     </div>
                     <div className='font-bold'>
-                        <p className='mt-10'>가입하신 ID의 이메일을 적어주세요.</p>
-                        <p className='mt-3'>해당 이메일로 ID를 보내드릴게요!</p>
+                        <p className='mt-10'>가입하신 ID와 이메일을 적어주세요.</p>
+                        <p className='mt-3'>해당 이메일로 비밀번호를 보내드릴게요!</p>
                     </div>
                     <div className='flex mt-20 ml-56 space-x-3 text-base text-slate-600'>
-                        <Link to='/findPw' className='border-b-2 border-slate-300'>비밀번호 찾기</Link>
+                        <Link to='/findId' className='border-b-2 border-slate-300'>아이디 찾기</Link>
                         <Link to='/' className='border-b-2 border-slate-300'>로그인</Link>
                     </div>
                     <button onClick={handleSubmit}
@@ -45,10 +58,9 @@ const FindId = props => {
                         <p className='mt-3 text-sm border-b-2 ml-80 border-slate-300'>고객센터</p>
                     </div>
                 </div>
-                <div className='h-10'></div>
             </div>
         </div>
     )
 }
 
-export default FindId
+export default FindPw

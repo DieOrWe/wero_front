@@ -6,22 +6,22 @@ const dummyData = {
     password: '123',
 }
 
-const Login = props => {
-    const focusRef = useRef();
+const Login = () => {
+    const focusRef = useRef<any>();
 
     const [values, setValues] = useState({
         id: "",
         password: "",
     });
 
-    const handleChange = e => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({
             ...values,
             [e.target.name]: e.target.value,
         })
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = () => {
         if (dummyData.id === values.id && dummyData.password === values.password) {
             sessionStorage.setItem('user_id', values.id);
         } else {
@@ -34,7 +34,7 @@ const Login = props => {
         focusRef.current.focus();
     }, [])
 
-    const onEnter = (e) => {
+    const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             handleSubmit();
         }

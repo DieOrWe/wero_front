@@ -52,8 +52,8 @@ const WriteLetter = () => {
                 <textarea onChange={handleChange} name='content' value={letter.content} className='w-full border-b-2 border-black h-96' placeholder='오늘의 이야기를 들려주세요. :)' />
                 <div className='flex items-center justify-between mt-4 space-x-2'>
                     <div className='flex items-center'>
-                        <input type="checkbox" onClick={handleCheck} className='w-4 h-4' name="" id="" />
-                        <p>편지 공개</p>
+                        <input type="checkbox" onClick={handleCheck} className='w-4 h-4' name="" id="open" />
+                        <label htmlFor='open'>편지 공개</label>
                     </div>
                     <button
                         onClick={handleClick}

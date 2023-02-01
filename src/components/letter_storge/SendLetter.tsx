@@ -3,18 +3,21 @@ import './Letter.css'
 
 const dummyData = [
     {
+        id: '1',
         state: '보냄',
         nickName: '나',
         letterName: '보낸 편지1',
         date: '2023.01.18',
         content: '나는 1번 보낸편지',
     }, {
+        id: '2',
         state: '보냄',
         nickName: '나',
         letterName: '보낸 편지2',
         date: '2023.01.18',
         content: '나는 2',
     }, {
+        id: '3',
         state: '보냄',
         nickName: '나',
         letterName: '보낸 편지3',
@@ -24,6 +27,7 @@ const dummyData = [
 ]
 
 interface MailData {
+    id: string,
     state: string,
     nickName: string,
     letterName: string,
@@ -32,6 +36,7 @@ interface MailData {
 }
 
 interface ReadMail {
+    id: string,
     letterName: string,
     content: string,
     nickName: string,
@@ -39,6 +44,7 @@ interface ReadMail {
 
 const SendLetter = () => {
     const [letter, setLetter] = useState<ReadMail>({
+        id: '',
         letterName: '',
         content: '',
         nickName: '',
@@ -47,6 +53,7 @@ const SendLetter = () => {
     const handleClose = () => setShow(false);
     const handleShow = (data: MailData) => {
         setLetter({
+            id: data.id,
             letterName: data.letterName,
             content: data.content,
             nickName: data.nickName,
@@ -60,16 +67,33 @@ const SendLetter = () => {
         setLetters(dummyData);
     }, []);
 
+    // 삭제할 편지 id 리스트 : deleteLetters
+    const [deleteLetters, setDeleteLetters] = useState<string[]>([]);
+    const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
+        const target = e.target as Element;
+        for (let i = 0; i < deleteLetters.length; i++) {
+            const element = deleteLetters[i];
+            if (element === target.id) {
+                setDeleteLetters(deleteLetters.filter((element) => element !== target.id));
+                return '';
+            }
+        }
+        setDeleteLetters([
+            ...deleteLetters,
+            target.id,
+        ])
+    }
+
     return (
         <div className='ml-12 mr-20'>
             <img src="img/delete.png" className='float-right w-6' alt="" />
             <ol style={{ listStyleType: 'decimal' }} reversed className='pt-10' >
                 {letters.map((data, index) => {
                     return (
-                        <div className='flex space-x-5'>
-                            <input type="checkbox" className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
+                        <div key={data.id} className='flex space-x-5'>
+                            <input type="checkbox" id={data.id} onClick={handleCheck} className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
                             checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')]" />
-                            <div key={index} onClick={() => handleShow(data)} className='flex justify-between w-full py-2 mb-3 border-b-2'>
+                            <div onClick={() => handleShow(data)} className='flex justify-between w-full py-2 mb-3 border-b-2'>
                                 <div className='flex space-x-4'>
                                     <li>{data.state}</li>
                                     <p>{data.nickName}</p>

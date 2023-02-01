@@ -21,7 +21,6 @@ const MainPage = () => {
             notification: '',
             [target.className]: '_clicked',
         });
-
     }
 
     const onLogout = () => {

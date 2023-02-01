@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const dummyData = {
-    id: 'qqq',
-    password: '123',
-}
-
 const Login = () => {
     const BaseUrl = "http://localhost:8080/api/user/login";
 
@@ -26,7 +21,8 @@ const Login = () => {
     const handleSubmit = () => {
         fetch(BaseUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", 
+            },
             body: JSON.stringify({
                 userCreatedWhen: '',
                 userEmail: '',
@@ -35,14 +31,19 @@ const Login = () => {
                 userNotify: true,
                 userPw: values.password,
             }),
-        }).then((response) => response.json)
-        .then((res) => console.log(res));
-        // if (dummyData.id === values.id && dummyData.password === values.password) {
-        //     localStorage.setItem('user_id', values.id);
-        // } else {
-        //     alert('아이디 혹은 비밀번호를 다시 입력하세요.')
-        // }
-        // document.location.href = '/';
+        })
+        .then ((response) => {
+            if (!response.ok) {
+            alert('아이디 혹은 비밀번호를 다시 입력하세요.');
+            throw new Error('login error! -- 400 or 500');
+          }
+          return response.json()
+        })
+        .then((res) => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user_id', values.id);
+            document.location.href = '/';
+        })
     }
 
     useEffect(() => {

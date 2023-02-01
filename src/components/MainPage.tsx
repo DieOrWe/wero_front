@@ -25,7 +25,7 @@ const MainPage = () => {
     }
 
     const onLogout = () => {
-        sessionStorage.removeItem('user_id');
+        localStorage.removeItem('user_id');
         document.location.href = '/';
     }
 

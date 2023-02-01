@@ -11,7 +11,7 @@ const App = props => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem('user_id') === null) {
+    if (localStorage.getItem('user_id') === null) {
     } else {
       setIsLogin(true)
     }

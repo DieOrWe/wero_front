@@ -25,10 +25,10 @@ const WriteLetter = () => {
             body: JSON.stringify({
                 myLetterContent: letter.content,
                 myLetterCreatedWhen: nowDate,
-                myLetterId: `${sessionStorage.getItem('user_id')}-${letter.title}`,
+                myLetterId: `${localStorage.getItem('user_id')}-${letter.title}`,
                 myLetterIsPrivate: letter.isCheck,
                 myLetterTitle: letter.title,
-                writerId: sessionStorage.getItem('user_id'),
+                writerId: localStorage.getItem('user_id'),
             }),
         });
         alert('전송이 완료되었습니다!');

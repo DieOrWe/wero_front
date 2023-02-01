@@ -7,6 +7,8 @@ const dummyData = {
 }
 
 const Login = () => {
+    const BaseUrl = "http://localhost:8080/api/user/login";
+
     const focusRef = useRef<any>();
 
     const [values, setValues] = useState({
@@ -22,12 +24,25 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        if (dummyData.id === values.id && dummyData.password === values.password) {
-            sessionStorage.setItem('user_id', values.id);
-        } else {
-            alert('아이디 혹은 비밀번호를 다시 입력하세요.')
-        }
-        document.location.href = '/';
+        fetch(BaseUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userCreatedWhen: '',
+                userEmail: '',
+                userId: values.id,
+                userNickName: '',
+                userNotify: true,
+                userPw: values.password,
+            }),
+        }).then((response) => response.json)
+        .then((res) => console.log(res));
+        // if (dummyData.id === values.id && dummyData.password === values.password) {
+        //     localStorage.setItem('user_id', values.id);
+        // } else {
+        //     alert('아이디 혹은 비밀번호를 다시 입력하세요.')
+        // }
+        // document.location.href = '/';
     }
 
     useEffect(() => {
@@ -69,12 +84,12 @@ const Login = () => {
                         <p className='mx-1 text-sm'>아이디 기억하기</p>
                     </div>
                     <div className='space-x-2'>
-                        <Link to='/findId' className='text-slate-800 border-b-2 text-sm border-slate-400'>아이디 찾기</Link>
-                        <Link to='/findPw' className='text-slate-800 border-b-2 text-sm border-slate-400'>비밀번호 찾기</Link>
+                        <Link to='/findId' className='text-sm border-b-2 text-slate-800 border-slate-400'>아이디 찾기</Link>
+                        <Link to='/findPw' className='text-sm border-b-2 text-slate-800 border-slate-400'>비밀번호 찾기</Link>
                     </div>
                 </div>
                 <button onClick={handleSubmit}
-                    className='h-10 rounded-md text-white bg-black w-96 border-slate-300'
+                    className='h-10 text-white bg-black rounded-md w-96 border-slate-300'
                 >Log In</button>
             </div>
 

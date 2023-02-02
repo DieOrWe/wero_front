@@ -21,7 +21,7 @@ const SignUp = () => {
     })
     const isId = (id: string): boolean => {
         const idRegex =
-            /^\w{6,12}$/i;
+            /^\w{5,12}$/i;
         return idRegex.test(id);
     };
     const isPassword = (password: string): boolean => {

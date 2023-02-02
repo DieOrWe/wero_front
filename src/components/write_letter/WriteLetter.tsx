@@ -21,14 +21,17 @@ const WriteLetter = () => {
         const nowDate = `${todayYear}-${todayMonth}-${todayDate}`;
         fetch(BaseUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
             body: JSON.stringify({
+                myLetterId: `${localStorage.getItem('user_id')}-${letter.title}`,
+                writerId: localStorage.getItem('user_id'),
+                myLetterTitle: letter.title,
                 myLetterContent: letter.content,
                 myLetterCreatedWhen: nowDate,
-                myLetterId: `${localStorage.getItem('user_id')}-${letter.title}`,
                 myLetterIsPrivate: letter.isCheck,
-                myLetterTitle: letter.title,
-                writerId: localStorage.getItem('user_id'),
             }),
         });
         alert('전송이 완료되었습니다!');
@@ -43,25 +46,25 @@ const WriteLetter = () => {
 
     return (
         <div>
-            <div className='flex mb-3 ml-10 text-3xl font-bold mt-14'>
-                <img src="img/Write.png" alt="" className='w-10 mr-2' />
+            <div className='flex mb-3 ml-10 text-2xl md:text-3xl font-bold mt-8 md:mt-14'>
+                <img src="img/Write.png" alt="" className='w-8 h-8 mr-2 ml-4 md:ml-0 md:w-10 md:h-10 ' />
                 <h1>편지 쓰기</h1>
             </div>
-            <div className='mx-20 mt-16'>
+            <div className='mx-20 mt-10 md:mt-16'>
                 <input type="text" onChange={handleChange} name='title' className='w-full mb-10 border-b-2 border-slate-500' placeholder='제목' />
                 <textarea onChange={handleChange} name='content' value={letter.content} className='w-full border-b-2 border-black h-96' placeholder='오늘의 이야기를 들려주세요. :)' />
                 <div className='flex items-center justify-between mt-4 space-x-2'>
                     <div className='flex items-center'>
-                        <input type="checkbox" onClick={handleCheck} className='w-4 h-4' name="" id="open" />
+                        <input type="checkbox" onClick={handleCheck} className='w-4 h-4 mr-2' name="" id="open" />
                         <label htmlFor='open'>편지 공개</label>
                     </div>
                     <button
                         onClick={handleClick}
-                        className='h-10 mt-16 bg-black right-20 md:h-12 w-36 md:w-52 rounded-2xl text-slate-200 border-slate-300'
+                        className='h-10 mt-16 bg-black right-20 md:h-12 w-28 md:w-52 rounded-2xl text-slate-200 border-slate-300'
                     >전송</button>
                 </div>
             </div>
-            <div className='h-16'></div>
+            <div className='h-40 md:h-16'></div>
         </div>
     )
 }

@@ -36,6 +36,7 @@ const Setting = () => {
                     </div>
                 </Link>
             </div>
+            <div className='mb-40 h-2'></div>
         </div>
     )
 }

@@ -17,16 +17,16 @@ const AlarmSetting = () => {
         <div>
             <div className='flex flex-col mt-8 mx-20'>
                 <div className='flex items-center mb-6'>
-                    <img src="img/AlarmSettings.png" alt="" />
-                    <p className='text-xl font-bold mx-2'>알림설정</p>
+                    <img className='w-7 h-7 md:w-auto md:h-auto' src="img/AlarmSettings.png" alt="" />
+                    <p className='text-lg font-bold md:text-xl ml-1'>알림설정</p>
                 </div>
-                <Link to={'/setting'}>
-                    <div className='flex mb-7 justify-between items-center w-40 h-10 rounded-lg bg-gray-100'>
+                <div className='mb-7 w-28 h-8 md:w-40 md:h-10 rounded-lg bg-gray-100 items-center'>
+                    <Link to={'/setting'} className='flex justify-between items-center w-full h-full'>
                         <img src="img/leftArrow.png" alt="" />
                         <p>뒤로</p>
                         <p> </p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
                 <div className='flex justify-between mt-8 font-semibold text-xl text-slate-700'>
                     <p> </p>
                     <p>PUSH 알림</p>
@@ -51,8 +51,8 @@ const AlarmSetting = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
+            <div className='mb-48'></div>
         </div>
     )
 }

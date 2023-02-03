@@ -70,7 +70,7 @@ const AllLetter = () => {
     // 삭제할 편지 id 리스트 : deleteLetters
     const [deleteLetters, setDeleteLetters] = useState<string[]>([]);
     const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
-        const target = e.target as Element;
+        const target = e.target as Element; // 타입 단언
         for (let i = 0; i < deleteLetters.length; i++) {
             const element = deleteLetters[i];
             if (element === target.id) {

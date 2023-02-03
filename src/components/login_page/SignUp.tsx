@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
     const BaseUrl = "http://localhost:8080/api/user";
-    const focusRef = useRef<any>();
+    const focusRef = useRef<HTMLInputElement>(null);
     const [values, setValues] = useState({
         id: "",
         password: "",
@@ -87,7 +87,7 @@ const SignUp = () => {
                     userPw: values.password,
                 }),
             })
-                .then(req => req.json())
+                .then(resp => resp.json())
                 .then(data => String(data.message));
             if (message === '이미 존재하는 ID 입니다.') {
                 alert(message);
@@ -101,7 +101,7 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        focusRef.current.focus();
+        focusRef.current!.focus();
     }, []);
 
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -217,7 +217,7 @@ const SignUp = () => {
                     </div>
                     {
                         (effectiveness.id && effectiveness.password && effectiveness.verifyPassword && effectiveness.nickName && effectiveness.eMail) ?
-                            <div className="mt-10 text-xl font-sans text-stone-500 space-y-2">
+                            <div className="mt-10 space-y-2 font-sans text-xl text-stone-500">
                                 <p>이제 WeRo의 회원이 될 준비가 끝났어요!</p>
                                 <p>아래 버튼을 눌러 WeRo의 회원이 되어보세요!</p>
                             </div>

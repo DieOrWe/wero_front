@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     const BaseUrl = "http://localhost:8080/api/user/login";
 
-    const focusRef = useRef<any>();
+    const focusRef = useRef<HTMLInputElement>(null);
 
     const [values, setValues] = useState({
         id: "",
@@ -48,7 +48,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        focusRef.current.focus();
+        focusRef.current!.focus();
     }, [])
 
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {

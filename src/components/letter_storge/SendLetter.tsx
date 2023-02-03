@@ -1,38 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Letter.css'
 
-const dummyData = [
-    {
-        id: '1',
-        state: '보냄',
-        nickName: '나',
-        letterName: '보낸 편지1',
-        date: '2023.01.18',
-        content: '나는 1번 보낸편지',
-    }, {
-        id: '2',
-        state: '보냄',
-        nickName: '나',
-        letterName: '보낸 편지2',
-        date: '2023.01.18',
-        content: '나는 2',
-    }, {
-        id: '3',
-        state: '보냄',
-        nickName: '나',
-        letterName: '보낸 편지3',
-        date: '2023.01.18',
-        content: '3번입니다.',
-    },
-]
-
 interface MailData {
-    id: string,
-    state: string,
-    nickName: string,
-    letterName: string,
-    date: string,
-    content: string,
+    letterCreatedWhen: string,
+    myLetterId: string,
+    myLetterTitle: string,
+    userId: string,
+    userNickName: string,
 }
 
 interface ReadMail {
@@ -51,22 +25,41 @@ const SendLetter = () => {
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const findMySendLetter = "http://localhost:8080/api/user/sendLetters/check"
     const handleShow = (data: MailData) => {
-        setLetter({
-            id: data.id,
-            letterName: data.letterName,
-            content: data.content,
-            nickName: data.nickName,
-        });
+        fetch(findMySendLetter, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+            body: data.myLetterId,
+        })
+        .then(resp => resp.json())
+        .then(resp => setLetter({
+            id: resp.myLetterId,
+            letterName: resp.myLetterTitle,
+            content: resp.myLetterContent,
+            nickName: data.userNickName,
+        }));
         setShow(true);
     }
 
     const [letters, setLetters] = useState<MailData[]>([]);
 
-    useEffect(() => {
-        setLetters(dummyData);
-    }, []);
+    const findAllMySendLetters = "http://localhost:8080/api/user/sendLetters";
 
+    useEffect(() => {
+        fetch(findAllMySendLetters+`/${localStorage.getItem('user_id')}`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+        })
+        .then(resp => resp.json())
+        .then(resp => setLetters(resp));
+    }, []);
+    
     // 삭제할 편지 id 리스트 : deleteLetters
     const [deleteLetters, setDeleteLetters] = useState<string[]>([]);
     const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -83,23 +76,35 @@ const SendLetter = () => {
             target.id,
         ])
     }
+    const deleteSendLetter = "http://localhost:8080/api/user/sendLetters";
+    const handleDelete = () => {
+        fetch(deleteSendLetter, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+            // body: deleteLetters,
+        });
+        setDeleteLetters([]);
+    }
 
     return (
         <div className='ml-10 mr-10 md:ml-12 md:mr-20'>
-            <img src="img/delete.png" className='float-right w-6' alt="" />
+            <img src="img/delete.png" onClick={handleDelete} className='float-right w-6' alt="" />
             <ol style={{ listStyleType: 'decimal' }} reversed className='pt-10' >
                 {letters.map((data, index) => {
                     return (
-                        <div key={data.id} className='flex space-x-5 text-sm md:text-base'>
-                            <input type="checkbox" id={data.id} onClick={handleCheck} className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
+                        <div key={data.myLetterId} className='flex space-x-5 text-sm md:text-base'>
+                            <input type="checkbox" id={data.myLetterId} onClick={handleCheck} className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
                             checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')]" />
                             <div onClick={() => handleShow(data)} className='flex justify-between w-full py-2 mb-3 border-b-2'>
                                 <div className='flex space-x-4'>
-                                    <li>{data.state}</li>
-                                    <p>{data.nickName}</p>
+                                    <li>보냄</li>
+                                    <p>{data.userNickName}</p>
                                 </div>
-                                <p>{data.letterName}</p>
-                                <p>{data.date}</p>
+                                <p>{data.myLetterTitle}</p>
+                                <p>{data.letterCreatedWhen}</p>
                             </div>
                         </div>
                     )

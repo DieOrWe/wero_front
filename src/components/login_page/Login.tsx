@@ -45,8 +45,6 @@ const Login = () => {
                 localStorage.setItem('user_id', values.id);
                 document.location.href = '/';
             })
-        localStorage.setItem('user_id', values.id);
-        document.location.href = '/';
     }
 
     useEffect(() => {

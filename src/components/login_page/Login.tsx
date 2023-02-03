@@ -19,31 +19,32 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        // fetch(BaseUrl, {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json", 
-        //     },
-        //     body: JSON.stringify({
-        //         userCreatedWhen: '',
-        //         userEmail: '',
-        //         userId: values.id,
-        //         userNickName: '',
-        //         userNotify: true,
-        //         userPw: values.password,
-        //     }),
-        // })
-        // .then ((response) => {
-        //     if (!response.ok) {
-        //     alert('아이디 혹은 비밀번호를 다시 입력하세요.');
-        //     throw new Error('login error! -- 400 or 500');
-        //   }
-        //   return response.json()
-        // })
-        // .then((res) => {
-        //     localStorage.setItem('token', res.token);
-        //     localStorage.setItem('user_id', values.id);
-        //     document.location.href = '/';
-        // })
+        fetch(BaseUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userCreatedWhen: '',
+                userEmail: '',
+                userId: values.id,
+                userNickName: '',
+                userNotify: true,
+                userPw: values.password,
+            }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    alert('아이디 혹은 비밀번호를 다시 입력하세요.');
+                    throw new Error('login error! -- 400 or 500');
+                }
+                return response.json()
+            })
+            .then((res) => {
+                localStorage.setItem('token', res.token);
+                localStorage.setItem('user_id', values.id);
+                document.location.href = '/';
+            })
         localStorage.setItem('user_id', values.id);
         document.location.href = '/';
     }

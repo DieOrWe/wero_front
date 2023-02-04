@@ -35,13 +35,13 @@ const SendLetter = () => {
             },
             body: data.myLetterId,
         })
-        .then(resp => resp.json())
-        .then(resp => setLetter({
-            id: resp.myLetterId,
-            letterName: resp.myLetterTitle,
-            content: resp.myLetterContent,
-            nickName: data.userNickName,
-        }));
+            .then(resp => resp.json())
+            .then(resp => setLetter({
+                id: resp.myLetterId,
+                letterName: resp.myLetterTitle,
+                content: resp.myLetterContent,
+                nickName: data.userNickName,
+            }));
         setShow(true);
     }
 
@@ -50,16 +50,16 @@ const SendLetter = () => {
     const findAllMySendLetters = "http://localhost:8080/api/user/sendLetters";
 
     useEffect(() => {
-        fetch(findAllMySendLetters+`/${localStorage.getItem('user_id')}`, {
+        fetch(findAllMySendLetters + `/${localStorage.getItem('user_id')}`, {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             },
         })
-        .then(resp => resp.json())
-        .then(resp => setLetters(resp));
+            .then(resp => resp.json())
+            .then(resp => setLetters(resp));
     }, []);
-    
+
     // 삭제할 편지 id 리스트 : deleteLetters
     const [deleteLetters, setDeleteLetters] = useState<string[]>([]);
     const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -77,14 +77,13 @@ const SendLetter = () => {
         ])
     }
     const deleteSendLetter = "http://localhost:8080/api/user/sendLetters";
-    const handleDelete = () => {
-        fetch(deleteSendLetter, {
+    const handleDelete = async () => {
+        console.log(`${deleteLetters}`);
+        await fetch(deleteSendLetter + `/${deleteLetters}`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             },
-            // body: deleteLetters,
         });
         setDeleteLetters([]);
     }

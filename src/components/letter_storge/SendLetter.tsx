@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Letter.css'
+import { log } from 'console';
 
 interface MailData {
     letterCreatedWhen: string,
@@ -78,14 +79,17 @@ const SendLetter = () => {
     }
     const deleteSendLetter = "http://localhost:8080/api/user/sendLetters";
     const handleDelete = async () => {
-        console.log(`${deleteLetters}`);
-        await fetch(deleteSendLetter + `/${deleteLetters}`, {
+        await fetch(deleteSendLetter, {
             method: "DELETE",
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             },
+            body: JSON.stringify(deleteLetters),
         });
         setDeleteLetters([]);
+        // const [, updateState] = useState();
+        // const forceUpdate = useCallback(() => updateState({}), []);
     }
 
     return (

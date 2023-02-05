@@ -87,9 +87,10 @@ const SendLetter = () => {
             },
             body: JSON.stringify(deleteLetters),
         });
+        setLetters(letters.filter(data => {
+            return !deleteLetters.includes(data.myLetterId);
+        }));
         setDeleteLetters([]);
-        // const [, updateState] = useState();
-        // const forceUpdate = useCallback(() => updateState({}), []);
     }
 
     return (

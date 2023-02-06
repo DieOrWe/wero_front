@@ -47,7 +47,7 @@ const SendLetter = () => {
     }
 
     const [letters, setLetters] = useState<MailData[]>([]);
-
+    
     const findAllMySendLetters = "http://localhost:8080/api/user/sendLetters";
 
     useEffect(() => {

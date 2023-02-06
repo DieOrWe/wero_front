@@ -33,18 +33,16 @@ const Login = () => {
                 userPw: values.password,
             }),
         })
-            .then((response) => {
-                if (!response.ok) {
-                    alert('아이디 혹은 비밀번호를 다시 입력하세요.');
-                    throw new Error('login error! -- 400 or 500');
-                }
-                return response.json()
-            })
-            .then((res) => {
-                localStorage.setItem('token', res.token);
+        .then(resp => resp.json())
+        .then((resp) => {
+            if (Object.keys(resp).includes('message')) {
+                alert(resp.message);
+            } else {
+                localStorage.setItem('token', resp.token);
                 localStorage.setItem('user_id', values.id);
                 document.location.href = '/';
-            })
+            }
+        })
     }
 
     useEffect(() => {

@@ -18,7 +18,9 @@ const WriteLetter = () => {
         let todayYear = now.getFullYear();
         let todayMonth = now.getMonth() + 1;
         let todayDate = now.getDate();
-        const nowDate = `${todayYear}-${todayMonth}-${todayDate}`;
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
         fetch(BaseUrl, {
             method: "POST",
             headers: {

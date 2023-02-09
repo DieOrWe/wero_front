@@ -10,6 +10,11 @@ const ChangePersonalInfo = () => {
         nickName: "",
         eMail: "",
     });
+    const [pwValues, setPwValues] = useState({
+        password: "",
+        newPassword: "",
+        checkPassword: "",
+    });
 
     const findUser = "http://localhost:8080/api/user";
     useEffect(() => {
@@ -32,12 +37,16 @@ const ChangePersonalInfo = () => {
     }, [])
 
     const [show, setShow] = useState(false);
+    const [showPw, setShowPw] = useState(false);
 
     const handleClose = () => setShow(false);
+    const handleClosePw = () => setShowPw(false);
 
     const [effectiveness, setEffectiveness] = useState({
         nickName: true,
         eMail: true,
+        newPassword: false,
+        checkPassword: false,
     })
     const isNickName = (nickName: string): boolean => {
         const nickNameRegex =
@@ -48,6 +57,14 @@ const ChangePersonalInfo = () => {
         const emailRegex =
             /^[a-z0-9_+.-]{3,}@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/i;
         return emailRegex.test(email);
+    };
+    const isPassword = (password: string): boolean => {
+        const passwordRegex =
+            /^\w{8,12}$/i;
+        return passwordRegex.test(password);
+    };
+    const isVerifyPassword = (password: string, verifyPassword: string): boolean => {
+        return password == verifyPassword;
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +83,22 @@ const ChangePersonalInfo = () => {
             [e.target.name]: isGood,
         })
     };
+    const handleChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPwValues({
+            ...pwValues,
+            [e.target.name]: e.target.value,
+        });
+        let isGood = false;
+        if (e.target.name === 'newPassword') {
+            isGood = isPassword(e.target.value);
+        } else if (e.target.name === 'checkPassword') {
+            isGood = isVerifyPassword(pwValues.newPassword, e.target.value);
+        }
+        setEffectiveness({
+            ...effectiveness,
+            [e.target.name]: isGood,
+        })
+    };
 
     const handleShow = () => {
         if (effectiveness.nickName && effectiveness.eMail) {
@@ -73,6 +106,9 @@ const ChangePersonalInfo = () => {
         } else {
             alert('아직 완성되지 않은 부분이 있어요!')
         }
+    }
+    const handleShowPw = () => {
+        setShowPw(true);
     }
 
     const updateUser = "http://localhost:8080/api/user/data";
@@ -105,6 +141,32 @@ const ChangePersonalInfo = () => {
             })
     }
 
+    const updateUserPw = "http://localhost:8080/api/user/data/updateWord";
+    const handleSavePw = async () => {
+        if (effectiveness.newPassword && effectiveness.checkPassword) {
+            await fetch(updateUserPw + `/${values.id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    userPw: pwValues.password,
+                    changePw: pwValues.newPassword,
+                }),
+            })
+                .then(resp => resp.json())
+                .then(resp => {
+                    alert(resp.message);
+                    if (resp.message === '비밀번호 변경이 성공적으로 이루어졌습니다.') {
+                        document.location.href = '/';
+                    }
+                })
+        } else {
+            alert('다시 입력해주세요.')
+        }
+
+    }
 
     const commonStyle = 'h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2';
 
@@ -160,10 +222,17 @@ const ChangePersonalInfo = () => {
                                 : null
                         }
                     </div>
-                    <div className='place-self-end'>
-                        <button onClick={handleShow}
-                            className='mt-16 h-12 rounded-3xl text-slate-200 bg-black w-44 border-slate-300'
-                        >저장하기</button>
+                    <div className='flex place-self-center space-x-4'>
+                        <div className=''>
+                            <button onClick={handleShowPw}
+                                className='mt-16 h-12 rounded-3xl text-black bg-slate-200 w-44 border-slate-300'
+                            >비밀번호 변경</button>
+                        </div>
+                        <div className=''>
+                            <button onClick={handleShow}
+                                className='mt-16 h-12 rounded-3xl text-slate-200 bg-black w-44 border-slate-300'
+                            >저장하기</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,6 +246,54 @@ const ChangePersonalInfo = () => {
                             저장하기
                         </button>
                         <button className="close-modal bg-slate-200 rounded-xl" onClick={handleClose}>
+                            뒤로가기
+                        </button>
+                    </div>
+                </div>
+            </div>)}
+            {showPw && (<div className='modal'>
+                <div className='overlay'>
+                    <div style={{ width: "300px" }} className="modal-content">
+                        <p>현재 비밀번호</p>
+                        <input className='w-56 h-8 mb-5' onChange={handleChangePw} value={pwValues.password} name='password' type="password" placeholder='password' />
+                        <p>변경할 비밀번호</p>
+                        <div>
+                            <input
+                                type="password"
+                                name="newPassword"
+                                value={pwValues.newPassword}
+                                onChange={handleChangePw}
+                                className={effectiveness.newPassword ?
+                                    `${commonStyle} w-56 h-8 border-gray-400 border-solid` : `${commonStyle} w-56 h-8 border-red-700 border-solid`}
+                                placeholder='Password'
+                            />
+                            {
+                                effectiveness.newPassword === false ?
+                                    <p className="font-sans text-sm text-yellow-600">비밀번호는 영어와 숫자만 가능하고 8~12로 해주세요!</p>
+                                    : null
+                            }
+                        </div>
+                        <p>비밀번호 재입력</p>
+                        <div className='mb-20'>
+                            <input
+                                type="password"
+                                name="checkPassword"
+                                value={pwValues.checkPassword}
+                                onChange={handleChangePw}
+                                className={effectiveness.checkPassword ?
+                                    `${commonStyle} w-56 h-8 border-gray-400 border-solid` : `${commonStyle} w-56 h-8 border-red-700 border-solid`}
+                                placeholder='VerifyPassword'
+                            />
+                            {
+                                effectiveness.checkPassword === false ?
+                                    <p className="font-sans text-sm text-yellow-600">비밀번호를 한 번 더 입력해 주세요</p>
+                                    : null
+                            }
+                        </div>
+                        <button className="mb-10 text-white bg-black close-modal rounded-xl" onClick={handleSavePw}>
+                            변경하기
+                        </button>
+                        <button className="close-modal bg-slate-200 rounded-xl" onClick={handleClosePw}>
                             뒤로가기
                         </button>
                     </div>

@@ -6,8 +6,17 @@ const FindId = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
-    const handleSubmit = () => {
-        alert('이메일로 ID가 전송되었습니다!')
+    const findId = "http://localhost:8080/api/user/data/findId";
+    const handleSubmit = async () => {
+        await fetch(findId, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(email)
+        })
+            .then(resp => resp.text())
+            .then(resp => alert(`당신의 ID는  ${resp} 입니다!`))
         document.location.href = '/';
     }
     return (
@@ -30,7 +39,7 @@ const FindId = () => {
                     </div>
                     <div className='font-bold'>
                         <p className='mt-10'>가입하신 ID의 이메일을 적어주세요.</p>
-                        <p className='mt-3'>해당 이메일로 ID를 보내드릴게요!</p>
+                        <p className='mt-3'>해당 이메일로 가입한 ID들을 보여드릴게요!</p>
                     </div>
                     <div className='flex mt-20 ml-56 space-x-3 text-base text-slate-600'>
                         <Link to='/findPw' className='border-b-2 border-slate-300'>비밀번호 찾기</Link>

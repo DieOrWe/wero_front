@@ -91,6 +91,8 @@ const SignUp = () => {
                 .then(data => String(data.message));
             if (message === '이미 존재하는 ID 입니다.') {
                 alert(message);
+            } else if (message === '이미 존재하는 Email 입니다.') {
+                alert(message);
             } else {
                 alert("이제 로그인 하여 WeRo를 이용해보세요!!");
                 document.location.href = "/";

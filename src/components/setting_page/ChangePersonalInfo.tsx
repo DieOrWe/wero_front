@@ -141,25 +141,38 @@ const ChangePersonalInfo = () => {
             })
     }
 
+    const checkPw = "http://localhost:8080/api/user/admin/IdPw"
     const updateUserPw = "http://localhost:8080/api/user/data/updateWord";
     const handleSavePw = async () => {
         if (effectiveness.newPassword && effectiveness.checkPassword) {
-            await fetch(updateUserPw + `/${values.id}`, {
-                method: "PUT",
+            await fetch(checkPw + `/${values.id}`, {
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem("token")}`
                 },
-                body: JSON.stringify({
-                    userPw: pwValues.password,
-                    changePw: pwValues.newPassword,
-                }),
+                body: JSON.stringify(pwValues.password)
             })
                 .then(resp => resp.json())
-                .then(resp => {
-                    alert(resp.message);
-                    if (resp.message === '비밀번호 변경이 성공적으로 이루어졌습니다.') {
-                        document.location.href = '/';
+                .then((resp) => {
+                    if (resp === true) {
+                        fetch(updateUserPw + `/${values.id}`, {
+                            method: "PUT",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem("token")}`
+                            },
+                            body: JSON.stringify(pwValues.newPassword),
+                        })
+                            .then(resp => resp.json())
+                            .then(resp => {
+                                alert(resp.message);
+                                if (resp.message === '비밀번호 변경이 성공적으로 이루어졌습니다.') {
+                                    document.location.href = '/';
+                                }
+                            })
+                    } else {
+                        alert('현재 비밀번호가 틀렸습니다.')
                     }
                 })
         } else {

@@ -16,8 +16,13 @@ const FindId = () => {
             body: JSON.stringify(email)
         })
             .then(resp => resp.text())
-            .then(resp => alert(`당신의 ID는  ${resp} 입니다!`))
-        document.location.href = '/';
+            .then(resp => {
+                if (resp === '{"message" : "등록된 계정 정보가 없습니다."}') {
+                    alert(resp)
+                } else {
+                    alert(`당신의 ID는  ${resp} 입니다!`)
+                }
+            })
     }
     return (
         <div className='flex flex-col items-center'>
@@ -47,7 +52,7 @@ const FindId = () => {
                     </div>
                     <button onClick={handleSubmit}
                         className='bg-black rounded-md mt-28 h-14 text-slate-200 w-96 border-slate-300'
-                    >Send E-mail</button>
+                    >Done</button>
                     <div className='flex'>
                         <p className='mt-3 text-sm border-b-2 ml-80 border-slate-300'>고객센터</p>
                     </div>

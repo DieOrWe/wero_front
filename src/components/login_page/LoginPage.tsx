@@ -25,7 +25,7 @@ const LoginPage = () => {
                     오늘 하루 힘든 일이 있었나요?</p>
                 <div className='hidden 2xl:font-extrabold 2xl:inline 2xl:text-5xl'>
                     <p className=''>오늘의 나에게 편지를 쓰고</p>
-                    <p className='mt-2 mb-8'>타인의 편지로 WeRo 받아가세요</p>
+                    <p className='mt-2 mb-8'>타인의 편지로 위로 받아가세요</p>
                 </div>
             </div>
 

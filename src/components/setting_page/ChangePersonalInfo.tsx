@@ -157,7 +157,7 @@ const ChangePersonalInfo = () => {
                 .then((resp) => {
                     if (resp === true) {
                         fetch(updateUserPw + `/${values.id}`, {
-                            method: "PUT",
+                            method: "POST",
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${localStorage.getItem("token")}`

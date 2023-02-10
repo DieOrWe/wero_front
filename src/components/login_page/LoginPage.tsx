@@ -19,7 +19,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            {/* 왼쪽 로고, 문구 */}
+            {/* 왼쪽 로고,문구 */}
             <div className='absolute mb-12 ml-12 bottom-5 left-10 text-white'>
                 <p className='hidden text-gray-300 2xl:inline 2xl:text-3xl 2xl:font-semibold'>
                     오늘 하루 힘든 일이 있었나요?</p>

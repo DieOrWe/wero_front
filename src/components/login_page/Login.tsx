@@ -33,16 +33,16 @@ const Login = () => {
                 userPw: values.password,
             }),
         })
-        .then(resp => resp.json())
-        .then((resp) => {
-            if (Object.keys(resp).includes('message')) {
-                alert(resp.message);
-            } else {
-                localStorage.setItem('token', resp.token);
-                localStorage.setItem('user_id', values.id);
-                document.location.href = '/';
-            }
-        })
+            .then(resp => resp.json())
+            .then((resp) => {
+                if (Object.keys(resp).includes('message')) {
+                    alert(resp.message);
+                } else {
+                    localStorage.setItem('token', resp.token);
+                    localStorage.setItem('user_id', values.id);
+                    document.location.href = '/';
+                }
+            })
     }
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const Login = () => {
                         value={values.id}
                         onChange={handleChange}
                         className="h-12 my-3 border-b-2 border-gray-400 border-solid w-72 md:w-96"
-                        placeholder='E-mail'
+                        placeholder='ID'
                         ref={focusRef}
                     />
                 </div>

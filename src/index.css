@@ -9,7 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('https://picsum.photos/1440/1080/?blur=2');
+  /* background-image: url('https://picsum.photos/1440/1080/?blur=2'); */
+  background-image: url('../public/img/rain-g922cd6bc3_1920.jpg');
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;

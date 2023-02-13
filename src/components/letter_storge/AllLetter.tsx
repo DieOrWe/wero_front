@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Letter.css'
 
 interface MailData {
-    id: string,
-    state: string,
-    nickName: string,
-    letterName: string,
-    date: string,
-    content: string,
+    letterReceivedWhen: string,
+    myLetterId: string,
+    myLetterTitle: string,
+    read: boolean,
+    userId: string,
+    writerNickName: string,
 }
 
 interface ReadMail {
@@ -30,7 +30,7 @@ const AllLetter = () => {
             },
         })
             .then(resp => resp.json())
-            .then(resp => setLetters(resp));
+            .then(resp => console.log(resp));
     }, []);
 
     const [letter, setLetter] = useState<ReadMail>({
@@ -41,13 +41,23 @@ const AllLetter = () => {
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const findMySendLetter = "http://localhost:8080/api/user/myLetters/received"
     const handleShow = (data: MailData) => {
-        setLetter({
-            id: data.id,
-            letterName: data.letterName,
-            content: data.content,
-            nickName: data.nickName,
-        });
+        fetch(findMySendLetter, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+            body: data.myLetterId,
+        })
+            .then(resp => resp.json())
+            .then(resp => setLetter({
+                id: resp.myLetterId,
+                letterName: resp.myLetterTitle,
+                content: resp.myLetterContent,
+                nickName: data.writerNickName,
+            }));
         setShow(true);
     }
 
@@ -67,23 +77,38 @@ const AllLetter = () => {
             target.id,
         ])
     }
+    const deleteReceivedLetter = "http://localhost:8080/api/user/myLetters/deleteReceivedUser";
+    const handleDelete = async () => {
+        await fetch(deleteReceivedLetter, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(deleteLetters),
+        });
+        setLetters(letters.filter(data => {
+            return !deleteLetters.includes(data.myLetterId);
+        }));
+        setDeleteLetters([]);
+    }
 
     return (
         <div className='ml-10 mr-10 md:ml-12 md:mr-20'>
-            <img src="img/delete.png" className='float-right w-6' alt="" />
+            <img src="img/delete.png" onClick={handleDelete} className='float-right w-6' alt="" />
             <ol style={{ listStyleType: 'decimal' }} reversed className='pt-10' >
                 {letters.map((data, index) => {
                     return (
-                        <div key={data.id} className='flex space-x-5 text-sm md:text-base'>
-                            <input type="checkbox" id={data.id} onClick={handleCheck} className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
+                        <div key={data.myLetterId} className='flex space-x-5 text-sm md:text-base'>
+                            <input type="checkbox" id={data.myLetterId} onClick={handleCheck} className="check w-12 h-10 appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E')]
                             checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')]" />
                             <div onClick={() => handleShow(data)} className='flex justify-between w-full py-2 mb-3 border-b-2'>
                                 <div className='flex space-x-4'>
-                                    <li >{data.state}</li>
-                                    <p>{data.nickName}</p>
+                                    <li >{data.read}</li>
+                                    <p>{data.writerNickName}</p>
                                 </div>
-                                <p>{data.letterName}</p>
-                                <p>{data.date}</p>
+                                <p>{data.myLetterTitle}</p>
+                                <p>{data.letterReceivedWhen}</p>
                             </div>
                         </div>
                     )

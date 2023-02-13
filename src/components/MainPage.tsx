@@ -1,16 +1,35 @@
-import React from 'react'
+import React, { SetStateAction, useEffect } from 'react'
 import { useState } from 'react';
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';
 import LetterStorge from './letter_storge/LetterStorge';
 import FirstSettingPage from './setting_page/FirstSettingPage';
 import WriteLetter from './write_letter/WriteLetter';
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
 
 const MainPage = () => {
+    const [stompClient, setStompClient] = useState<any>(null);
+    const [connected, setConnected] = useState(false);
+    const [greetings, setGreetings] = useState([]);
+
+    useEffect(() => {
+        const socket = new SockJS("http://localhost:8080/stomp-end-websocket");
+        const client = Stomp.over(socket);
+        client.connect({}, (frame) => {
+            setConnected(true);
+            console.log("Connected: " + frame);
+            client.subscribe("/topic/backmessage", (greeting) => {
+                console.log(JSON.parse(greeting.body).content);
+            });
+            setStompClient(client);
+        });
+    }
+        , [])
+
     const [topButton, setTopButton] = useState({
         email: '_clicked',
         write: '',
         setting: '',
-        notification: '',
     })
     const handleClick = (e: React.MouseEvent) => {
         const target = e.target as Element;
@@ -18,7 +37,6 @@ const MainPage = () => {
             email: '',
             write: '',
             setting: '',
-            notification: '',
             [target.className]: '_clicked',
         });
     }
@@ -38,7 +56,7 @@ const MainPage = () => {
                         <Link to='/'><button className='w-7 h-7 md:w-auto md:h-auto' onClick={handleClick}><img className='email' src={`img/Email${topButton.email}.png`} alt="email" /></button></Link>
                         <Link to='/write'><button className='w-7 h-7 md:w-auto md:h-auto' onClick={handleClick}><img className='write' src={`img/Write${topButton.write}.png`} alt="write" /></button></Link>
                         <Link to='/setting'><button className='w-7 h-7 md:w-auto md:h-auto' onClick={handleClick}><img className='setting' src={`img/Setting${topButton.setting}.png`} alt="setting" /></button></Link>
-                        <Link to='/notification'><button className='w-7 h-7 md:w-auto md:h-auto' onClick={handleClick}><img className='notification' src={`img/Notification${topButton.notification}.png`} alt="notification" /></button></Link>
+                        <Link to='/'><button className='w-7 h-7 md:w-auto md:h-auto' onClick={handleClick}><img className='email' src={`img/Notification.png`} alt="email" /></button></Link>
                         <img className='w-7 h-7' onClick={onLogout} src="img/Logout.png" alt="logout" />
                     </div>
                     <div>

@@ -30,7 +30,13 @@ const AllLetter = () => {
             },
         })
             .then(resp => resp.json())
-            .then(resp => setLetters(resp));
+            .then(resp => {
+                let temp: MailData[] = []
+                resp.forEach((element: MailData) => {
+                    temp.push(element)
+                });
+                setLetters(temp);
+            });
     }, []);
 
     const [letter, setLetter] = useState<ReadMail>({

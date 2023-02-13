@@ -30,7 +30,7 @@ const SignUp = () => {
         return passwordRegex.test(password);
     };
     const isVerifyPassword = (password: string, verifyPassword: string): boolean => {
-        return password == verifyPassword;
+        return password === verifyPassword;
     };
     const isNickName = (nickName: string): boolean => {
         const nickNameRegex =

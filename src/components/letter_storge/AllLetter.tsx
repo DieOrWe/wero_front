@@ -23,16 +23,14 @@ const AllLetter = () => {
     const findAllReceivedLetters = "http://localhost:8080/api/user/myLetters";
 
     useEffect(() => {
-        useEffect(() => {
-            fetch(findAllReceivedLetters + `/${localStorage.getItem('user_id')}`, {
-                method: "POST",
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("token")}`
-                },
-            })
-                .then(resp => resp.json())
-                .then(resp => setLetters(resp));
-        }, []);
+        fetch(findAllReceivedLetters + `/${localStorage.getItem('user_id')}`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+        })
+            .then(resp => resp.json())
+            .then(resp => setLetters(resp));
     }, []);
 
     const [letter, setLetter] = useState<ReadMail>({

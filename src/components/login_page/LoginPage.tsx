@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Login from './Login'
+import WhatIsWero from './WhatIsWero'
 
 const LoginPage = () => {
     const googleLoginUrl = "http://localhost:8080/api/user/getGoogleAuthUrl"
@@ -29,32 +30,37 @@ const LoginPage = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col items-center justify-center float-right h-screen bg-white'>
-                <div className='mx-0 md:mx-96'></div>
-                {/* 위에 welcome.. 문구 */}
-                <div className='mb-12'>
-                    <p className='mb-4 text-4xl font-bold hidden 2xl:inline'>Welcome!</p>
-                    <p className='mb-4 text-4xl font-bold 2xl:hidden'>WeRo</p>
-                    <p className='font-medium'>반가워요! 자세한 내용을 들려주시겠어요?</p>
+            <div className='float-right h-screen bg-white'>
+                <div className='place-self-start mb-28 ml-5 mt-2'>
+                    <WhatIsWero />
                 </div>
-                {/* 구글로 로그인 */}
-                <div onClick={handleGoogle} className='flex justify-center py-4 border-2 rounded-lg'>
-                    <p className='mx-24'>구글로 로그인</p>
-                </div>
-                <br />
-                {/* or 선 */}
-                <div className='flex items-center my-2 mx-14'>
-                    <div className='h-px bg-black w-32 md:w-44'></div>
-                    <p className='px-2'>or</p>
-                    <div className='h-px bg-black w-32 md:w-44'></div>
-                </div>
+                <div className='flex flex-col items-center justify-center'>
+                    <div className='mx-56 md:mx-96'></div>
+                    {/* 위에 welcome.. 문구 */}
+                    <div className='mb-12'>
+                        <p className='mb-4 text-4xl font-bold hidden 2xl:inline'>Welcome!</p>
+                        <p className='mb-4 text-4xl font-bold 2xl:hidden'>WeRo</p>
+                        <p className='font-medium'>반가워요! 자세한 내용을 들려주시겠어요?</p>
+                    </div>
+                    {/* 구글로 로그인 */}
+                    <div onClick={handleGoogle} className='flex justify-center py-4 border-2 rounded-lg'>
+                        <p className='mx-24'>구글로 로그인</p>
+                    </div>
+                    <br />
+                    {/* or 선 */}
+                    <div className='flex items-center my-2 mx-14'>
+                        <div className='h-px bg-black w-32 md:w-44'></div>
+                        <p className='px-2'>or</p>
+                        <div className='h-px bg-black w-32 md:w-44'></div>
+                    </div>
 
-                {/* 아이디, 비밀번호 입력칸 ~ 로그인버튼 */}
-                <Login />
+                    {/* 아이디, 비밀번호 입력칸 ~ 로그인버튼 */}
+                    <Login />
 
-                <div className='flex justify-center space-x-2 text-sm mt-7'>
-                    <p>아직 회원이 아니신가요?</p>
-                    <Link to='/signUp' className='border-b-2 text-slate-400 border-slate-400'>여기서 회원가입 하세요!</Link>
+                    <div className='flex justify-center space-x-2 text-sm mt-7'>
+                        <p>아직 회원이 아니신가요?</p>
+                        <Link to='/signUp' className='border-b-2 text-slate-400 border-slate-400'>여기서 회원가입 하세요!</Link>
+                    </div>
                 </div>
             </div>
         </div>

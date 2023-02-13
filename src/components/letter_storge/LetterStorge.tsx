@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import AllLetter from './AllLetter'
 import ReadLetter from './ReadLetter'
@@ -8,6 +8,7 @@ import './LetterStorage.css'
 
 const LetterStorge = () => {
     return (
+
         <div>
             <div className='flex items-center mb-3 ml-10 mt-14 font-bold text-xl md:text-3xl'>
                 <img src="img/Email.png" alt="" className='mr-2 w-8 md:w-10' />

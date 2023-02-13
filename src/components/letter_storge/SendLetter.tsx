@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Letter.css'
-import { log } from 'console';
 
 interface MailData {
     letterCreatedWhen: string,
@@ -18,6 +17,21 @@ interface ReadMail {
 }
 
 const SendLetter = () => {
+    const [letters, setLetters] = useState<MailData[]>([]);
+
+    const findAllMySendLetters = "http://localhost:8080/api/user/sendLetters";
+
+    useEffect(() => {
+        fetch(findAllMySendLetters + `/${localStorage.getItem('user_id')}`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            },
+        })
+            .then(resp => resp.json())
+            .then(resp => setLetters(resp));
+    }, []);
+
     const [letter, setLetter] = useState<ReadMail>({
         id: '',
         letterName: '',
@@ -46,20 +60,6 @@ const SendLetter = () => {
         setShow(true);
     }
 
-    const [letters, setLetters] = useState<MailData[]>([]);
-    
-    const findAllMySendLetters = "http://localhost:8080/api/user/sendLetters";
-
-    useEffect(() => {
-        fetch(findAllMySendLetters + `/${localStorage.getItem('user_id')}`, {
-            method: "POST",
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`
-            },
-        })
-            .then(resp => resp.json())
-            .then(resp => setLetters(resp));
-    }, []);
 
     // 삭제할 편지 id 리스트 : deleteLetters
     const [deleteLetters, setDeleteLetters] = useState<string[]>([]);

@@ -1,31 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Letter.css'
 
-const dummyData = [
-    {
-        id: '1',
-        state: '읽음',
-        nickName: '닉네임1',
-        letterName: '제목 제목 제목제목제목',
-        date: '2023.01.12',
-        content: '안녕 나는 1번이야',
-    }, {
-        id: '2',
-        state: '읽음',
-        nickName: '닉네임2',
-        letterName: '제목 제목',
-        date: '2023.01.14',
-        content: '나는 2번이야',
-    }, {
-        id: '3',
-        state: '안읽음',
-        nickName: '닉네임3',
-        letterName: '제목 제목',
-        date: '2023.01.18',
-        content: '나는 3번인데ㅋㅋ',
-    },
-]
-
 interface MailData {
     id: string,
     state: string,
@@ -43,6 +18,23 @@ interface ReadMail {
 }
 
 const AllLetter = () => {
+    const [letters, setLetters] = useState<MailData[]>([]);
+
+    const findAllReceivedLetters = "http://localhost:8080/api/user/myLetters";
+
+    useEffect(() => {
+        useEffect(() => {
+            fetch(findAllReceivedLetters + `/${localStorage.getItem('user_id')}`, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                },
+            })
+                .then(resp => resp.json())
+                .then(resp => setLetters(resp));
+        }, []);
+    }, []);
+
     const [letter, setLetter] = useState<ReadMail>({
         id: '',
         letterName: '',
@@ -60,12 +52,6 @@ const AllLetter = () => {
         });
         setShow(true);
     }
-
-    const [letters, setLetters] = useState<MailData[]>([]);
-
-    useEffect(() => {
-        setLetters(dummyData);
-    }, []);
 
     // 삭제할 편지 id 리스트 : deleteLetters
     const [deleteLetters, setDeleteLetters] = useState<string[]>([]);

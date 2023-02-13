@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import AllLetter from './AllLetter'
 import ReadLetter from './ReadLetter'

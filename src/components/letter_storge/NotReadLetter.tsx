@@ -19,7 +19,6 @@ interface ReadMail {
 
 const NotReadLetter = () => {
     const [letters, setLetters] = useState<MailData[]>([]);
-
     const findAllReceivedLetters = "http://localhost:8080/api/user/myLetters";
 
     useEffect(() => {
@@ -30,7 +29,15 @@ const NotReadLetter = () => {
             },
         })
             .then(resp => resp.json())
-            .then(resp => console.log(resp));
+            .then(resp => {
+                let temp: MailData[] = []
+                resp.forEach((element: MailData) => {
+                    if (element.read === false) {
+                        temp.push(element)
+                    }
+                });
+                setLetters(temp);
+            });
     }, []);
 
     const [letter, setLetter] = useState<ReadMail>({
@@ -41,9 +48,9 @@ const NotReadLetter = () => {
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const findMySendLetter = "http://localhost:8080/api/user/myLetters/received"
+    const findReceivedLetter = "http://localhost:8080/api/user/myLetters/received"
     const handleShow = (data: MailData) => {
-        fetch(findMySendLetter, {
+        fetch(findReceivedLetter, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

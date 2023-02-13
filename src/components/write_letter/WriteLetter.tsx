@@ -20,7 +20,8 @@ const WriteLetter = () => {
         let todayDate = now.getDate();
         let hours = now.getHours();
         let minutes = now.getMinutes();
-        const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
+        let seconds = now.getSeconds();
+        const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}:${seconds}`;
         fetch(BaseUrl, {
             method: "POST",
             headers: {
@@ -33,7 +34,7 @@ const WriteLetter = () => {
                 myLetterTitle: letter.title,
                 myLetterContent: letter.content,
                 myLetterCreatedWhen: nowDate,
-                myLetterIsPrivate: letter.isCheck,
+                myLetterIsPrivate: !letter.isCheck,
             }),
         });
         alert('전송이 완료되었습니다!');

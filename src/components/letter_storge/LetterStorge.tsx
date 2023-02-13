@@ -15,7 +15,7 @@ const LetterStorge = () => {
                 <h1>편지보관함</h1>
             </div>
             <div className='flex space-x-2 ml-10 text-sm md:space-x-3 md:text-base'>
-                <NavLink to='/'><p>모든 편지</p></NavLink>
+                <NavLink to='/'><p>받은 편지</p></NavLink>
                 <NavLink to='/read'><p>읽은 편지</p></NavLink>
                 <NavLink to='/notRead'><p>안읽은 편지</p></NavLink>
                 <NavLink to='/send'><p>보낸 편지</p></NavLink>

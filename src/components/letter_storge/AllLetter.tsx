@@ -30,7 +30,7 @@ const AllLetter = () => {
             },
         })
             .then(resp => resp.json())
-            .then(resp => console.log(resp));
+            .then(resp => setLetters(resp));
     }, []);
 
     const [letter, setLetter] = useState<ReadMail>({
@@ -41,9 +41,9 @@ const AllLetter = () => {
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const findMySendLetter = "http://localhost:8080/api/user/myLetters/received"
+    const findReceivedLetter = "http://localhost:8080/api/user/myLetters/received"
     const handleShow = (data: MailData) => {
-        fetch(findMySendLetter, {
+        fetch(findReceivedLetter, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,6 +77,7 @@ const AllLetter = () => {
             target.id,
         ])
     }
+
     const deleteReceivedLetter = "http://localhost:8080/api/user/myLetters/deleteReceivedUser";
     const handleDelete = async () => {
         await fetch(deleteReceivedLetter, {

@@ -25,6 +25,7 @@ const FindId = () => {
                 }
             })
     }
+
     return (
         <div className='flex flex-col items-center h-screen'>
             <div className='h-screen bg-white'>
@@ -62,7 +63,7 @@ const FindId = () => {
                 <div className='mb-5 h-10'></div>
             </div>
         </div>
-    )
-}
+  );
+};
 
-export default FindId
+export default FindId;

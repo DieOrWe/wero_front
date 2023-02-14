@@ -3,54 +3,53 @@ import { Link } from 'react-router-dom';
 import './FindIdPw.css';
 
 const FindPw = () => {
-    const [values, setValues] = useState({
-        id: '',
-        email: '',
-        password: '',
+  const [values, setValues] = useState({
+    id: "",
+    email: "",
+    password: "",
+  });
+
+  const [effectiveness, setEffectiveness] = useState({
+    password: false,
+  });
+  const isPassword = (password: string): boolean => {
+    const passwordRegex = /^\w{8,12}$/i;
+    return passwordRegex.test(password);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
     });
-
-    const [effectiveness, setEffectiveness] = useState({
-        password: false,
-    })
-    const isPassword = (password: string): boolean => {
-        const passwordRegex =
-            /^\w{8,12}$/i;
-        return passwordRegex.test(password);
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value,
-        });
-        let isGood = false;
-        if (e.target.name === 'password') {
-            isGood = isPassword(e.target.value);
-        }
-        setEffectiveness({
-            ...effectiveness,
-            [e.target.name]: isGood,
-        })
+    let isGood = false;
+    if (e.target.name === "password") {
+      isGood = isPassword(e.target.value);
     }
+    setEffectiveness({
+      ...effectiveness,
+      [e.target.name]: isGood,
+    });
+  };
 
-    const findPw = "http://localhost:8080/api/user/data/findPw";
-    const handleSubmit = () => {
-        if (effectiveness.password) {
-            fetch(findPw, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    "userEmail": values.email,
-                    "userId": values.id,
-                    "userPw": values.password
-                })
-            })
-                .then(resp => resp.json())
-                .then(resp => alert(resp.message));
-        }
+  const findPw = "/api/user/data/findPw";
+  const handleSubmit = () => {
+    if (effectiveness.password) {
+      fetch(findPw, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: values.email,
+          userId: values.id,
+          userPw: values.password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((resp) => alert(resp.message));
     }
+  };
 
     const commonStyle = 'h-12 pl-2 my-3 font-mono text-[#4F4F4F] text-lg w-96 border-b-2';
 
@@ -114,7 +113,9 @@ const FindPw = () => {
                 </div>
             </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default FindPw
+export default FindPw;

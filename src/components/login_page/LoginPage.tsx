@@ -4,20 +4,22 @@ import Login from './Login'
 import WhatIsWero from './WhatIsWero'
 import './LoginPage.css';
 
+
 const LoginPage = () => {
-    const googleLoginUrl = "http://localhost:8080/api/user/getGoogleAuthUrl"
-    const handleGoogle = () => {
-        fetch(googleLoginUrl, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(resp => resp.text())
-            .then(resp => {
-                window.open(resp, "_blank", "width=500, height=500")
-            })
-    }
+  const googleLoginUrl = "/api/user/getGoogleAuthUrl";
+  const handleGoogle = () => {
+    fetch(googleLoginUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.text())
+      .then((resp) => {
+        window.open(resp, "_blank", "width=500, height=500");
+      });
+  };
+
 
     return (
         <div>
@@ -65,7 +67,7 @@ const LoginPage = () => {
                 </div>
             </div>
         </div>
-    )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

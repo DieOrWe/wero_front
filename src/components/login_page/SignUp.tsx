@@ -1,118 +1,123 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
-    const BaseUrl = "http://localhost:8080/api/user";
-    const focusRef = useRef<HTMLInputElement>(null);
-    const [values, setValues] = useState({
-        id: "",
-        password: "",
-        verifyPassword: "",
-        nickName: "",
-        eMail: "",
+  const BaseUrl = "/api/user";
+  const focusRef = useRef<HTMLInputElement>(null);
+  const [values, setValues] = useState({
+    id: "",
+    password: "",
+    verifyPassword: "",
+    nickName: "",
+    eMail: "",
+  });
+
+  // 입력 값 유효성 검사
+  const [effectiveness, setEffectiveness] = useState({
+    id: false,
+    password: false,
+    verifyPassword: false,
+    nickName: false,
+    eMail: false,
+  });
+  const isId = (id: string): boolean => {
+    const idRegex = /^\w{5,12}$/i;
+    return idRegex.test(id);
+  };
+  const isPassword = (password: string): boolean => {
+    const passwordRegex = /^\w{8,12}$/i;
+    return passwordRegex.test(password);
+  };
+  const isVerifyPassword = (
+    password: string,
+    verifyPassword: string
+  ): boolean => {
+    return password === verifyPassword;
+  };
+  const isNickName = (nickName: string): boolean => {
+    const nickNameRegex = /^[가-힣a-zA-Z0-9]{2,}$/;
+    return nickNameRegex.test(nickName);
+  };
+  const isEmail = (email: string): boolean => {
+    const emailRegex = /^[a-z0-9_+.-]{3,}@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/i;
+    return emailRegex.test(email);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
     });
+    let isGood = false;
+    if (e.target.name === "id") {
+      isGood = isId(e.target.value);
+    } else if (e.target.name === "password") {
+      isGood = isPassword(e.target.value);
+    } else if (e.target.name === "verifyPassword") {
+      isGood = isVerifyPassword(values.password, e.target.value);
+    } else if (e.target.name === "nickName") {
+      isGood = isNickName(e.target.value);
+    } else if (e.target.name === "eMail") {
+      isGood = isEmail(e.target.value);
+    }
+    setEffectiveness({
+      ...effectiveness,
+      [e.target.name]: isGood,
+    });
+  };
 
-    // 입력 값 유효성 검사
-    const [effectiveness, setEffectiveness] = useState({
-        id: false,
-        password: false,
-        verifyPassword: false,
-        nickName: false,
-        eMail: false,
-    })
-    const isId = (id: string): boolean => {
-        const idRegex =
-            /^\w{5,12}$/i;
-        return idRegex.test(id);
-    };
-    const isPassword = (password: string): boolean => {
-        const passwordRegex =
-            /^\w{8,12}$/i;
-        return passwordRegex.test(password);
-    };
-    const isVerifyPassword = (password: string, verifyPassword: string): boolean => {
-        return password == verifyPassword;
-    };
-    const isNickName = (nickName: string): boolean => {
-        const nickNameRegex =
-            /^[가-힣a-zA-Z0-9]{2,}$/;
-        return nickNameRegex.test(nickName);
-    };
-    const isEmail = (email: string): boolean => {
-        const emailRegex =
-            /^[a-z0-9_+.-]{3,}@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/i;
-        return emailRegex.test(email);
-    };
+  const handleSubmit = async () => {
+    if (
+      effectiveness.id &&
+      effectiveness.password &&
+      effectiveness.verifyPassword &&
+      effectiveness.nickName &&
+      effectiveness.eMail
+    ) {
+      let now = new Date();
+      let todayYear = now.getFullYear();
+      let todayMonth = now.getMonth() + 1;
+      let todayDate = now.getDate();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
+      const message = await fetch(BaseUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userCreatedWhen: nowDate,
+          userEmail: values.eMail,
+          userId: values.id,
+          userNickName: values.nickName,
+          userNotify: true,
+          userPw: values.password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => String(data.message));
+      if (message === "이미 존재하는 ID 입니다.") {
+        alert(message);
+      } else if (message === "이미 존재하는 Email 입니다.") {
+        alert(message);
+      } else {
+        alert("이제 로그인 하여 WeRo를 이용해보세요!!");
+        document.location.href = "/";
+      }
+    } else {
+      alert("아직 완성되지 않은 부분이 있어요!");
+    }
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value,
-        });
-        let isGood = false;
-        if (e.target.name === 'id') {
-            isGood = isId(e.target.value);
-        } else if (e.target.name === 'password') {
-            isGood = isPassword(e.target.value);
-        } else if (e.target.name === 'verifyPassword') {
-            isGood = isVerifyPassword(values.password, e.target.value);
-        } else if (e.target.name === 'nickName') {
-            isGood = isNickName(e.target.value);
-        } else if (e.target.name === 'eMail') {
-            isGood = isEmail(e.target.value);
-        }
-        setEffectiveness({
-            ...effectiveness,
-            [e.target.name]: isGood,
-        })
-    };
+  useEffect(() => {
+    focusRef.current!.focus();
+  }, []);
 
-    const handleSubmit = async () => {
-        if (effectiveness.id && effectiveness.password && effectiveness.verifyPassword && effectiveness.nickName && effectiveness.eMail) {
-            let now = new Date();
-            let todayYear = now.getFullYear();
-            let todayMonth = now.getMonth() + 1;
-            let todayDate = now.getDate();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
-            const message = await fetch(BaseUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    userCreatedWhen: nowDate,
-                    userEmail: values.eMail,
-                    userId: values.id,
-                    userNickName: values.nickName,
-                    userNotify: true,
-                    userPw: values.password,
-                }),
-            })
-                .then(resp => resp.json())
-                .then(data => String(data.message));
-            if (message === '이미 존재하는 ID 입니다.') {
-                alert(message);
-            } else if (message === '이미 존재하는 Email 입니다.') {
-                alert(message);
-            } else {
-                alert("이제 로그인 하여 WeRo를 이용해보세요!!");
-                document.location.href = "/";
-            }
-        } else {
-            alert('아직 완성되지 않은 부분이 있어요!')
-        }
-    };
-
-    useEffect(() => {
-        focusRef.current!.focus();
-    }, []);
+  const commonStyle = "h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2";
 
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             handleSubmit();
         }
     };
-
-    const commonStyle = 'h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2';
 
     return (
         <div className="flex flex-col items-center h-screen">
@@ -238,8 +243,8 @@ const SignUp = () => {
                     </div>
                 </div>
             </div>
-        </div>
-    );
+            </div>
+  );
 };
 
 export default SignUp;

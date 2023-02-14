@@ -7,7 +7,12 @@ import WriteLetter from './write_letter/WriteLetter';
 
 const MainPage = () => {
     const [notify, setNotify] = useState('Notification');
+    const [show, setShow] = useState(true);
     useEffect(() => {
+        if (localStorage.getItem('pro') !== null) {
+            setShow(false)
+        }
+
         const intervalId = setInterval(() => {
             const currentDate = new Date();
             const currentHour = currentDate.getHours();
@@ -19,6 +24,11 @@ const MainPage = () => {
         }, 60000); // 매 분마다 호출
         return () => clearInterval(intervalId);
     }, [])
+
+    const handleClose = () => {
+        setShow(false)
+        localStorage.setItem('pro', 'true');
+    };
 
     const [topButton, setTopButton] = useState({
         email: '_clicked',
@@ -41,6 +51,7 @@ const MainPage = () => {
     const onLogout = () => {
         localStorage.removeItem('user_id');
         localStorage.removeItem('token');
+        localStorage.removeItem('pro');
         document.location.href = '/';
     }
 
@@ -65,6 +76,27 @@ const MainPage = () => {
                     </div>
                 </div>
             </div>
+
+            {show && (<div className='modal'>
+                <div className='overlay' onClick={handleClose}>
+                    <div className="modal-content">
+                        <div className='flex justify-between'>
+                            <p className='text-3xl font-bold'>WeRo 이용 가이드</p>
+                            <button onClick={handleClose} className='text-2xl'>X</button>
+                        </div>
+                        <br />
+                        <p className='text-lg font-semibold'>1. 상단의 연필 아이콘을 클릭해요.</p>
+                        <img src="img/1.png" alt="" />
+                        <br />
+                        <p className='text-lg font-semibold'>2. 편지를 작성하고 편지 공개 여부를 선택 후 전송버튼을 눌러요.</p>
+                        <img src="img/2.png" alt="" />
+                        <br />
+                        <p className='text-lg font-semibold'>3. 잠시 기다리면 편지가 올거에요</p>
+                        <img src="img/3.png" alt="" />
+                        <img src="img/4.png" alt="" />
+                    </div>
+                </div>
+            </div>)}
         </HashRouter>
     )
 }

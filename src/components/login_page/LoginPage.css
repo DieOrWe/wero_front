@@ -9,15 +9,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url('https://picsum.photos/1440/1080/?blur=2'); */
-  /* background-image: url('../public/img/tomoko-uji-eriuKJwcdjI-unsplash.jpg'); */
+  background-image: url('../../../public/img/tomoko-uji-eriuKJwcdjI-unsplash.jpg');
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
   background-attachment: fixed;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  backdrop-filter: blur(3px);
 }

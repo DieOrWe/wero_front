@@ -10,8 +10,8 @@ const WhatIsWero = () => {
     }
 
     return (
-        <div className='flex'>
-            <div onClick={handleOpen} className='text-sm border-b-2 border-black'> WeRo가 뭔가요?</div >
+        <div className='flex text-[#4F4F4F]'>
+            <div onClick={handleOpen} className='text-sm border-b border-black'> WeRo가 뭔가요?</div >
 
 
             {show && (<div className='modal'>

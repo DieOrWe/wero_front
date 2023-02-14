@@ -115,11 +115,11 @@ const SignUp = () => {
     const commonStyle = 'h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2';
 
     return (
-        <div className="flex flex-col items-center">
-            <div className="h-full bg-white">
+        <div className="flex flex-col items-center h-screen">
+            <div className="h-screen bg-white">
                 <div className="mx-60 md:mx-96"></div>
                 <div className="ml-10 md:ml-44">
-                    <div className="mt-24 text-slate-700">
+                    <div className="mt-24 text-[#4F4F4F]">
                         <h1 className="text-4xl font-bold">Welcome to We로!</h1>
                         <p className="mt-4 font-semibold">
                             회원이 되어 당신의 이야기를 모두에게 들려주세요
@@ -209,11 +209,11 @@ const SignUp = () => {
                                 : null
                         }
                     </div>
-                    <div className="flex ml-48 space-x-3 text-base text-slate-600">
-                        <p className="border-b-2 border-slate-300">
+                    <div className="flex ml-48 space-x-3 text-base text-[#4F4F4F]">
+                        <p className="border-b border-[#4F4F4F]">
                             아이디 찾기
                         </p>
-                        <p className="border-b-2 border-slate-300">
+                        <p className="border-b border-[#4F4F4F]">
                             비밀번호 찾기
                         </p>
                     </div>
@@ -232,7 +232,7 @@ const SignUp = () => {
                         Sign Up
                     </button>
                     <div className="flex mb-20">
-                        <p className="mt-3 text-sm border-b-2 ml-80 border-slate-300">
+                        <p className="mt-3 text-sm border-b ml-80 border-[#4F4F4F]">
                             고객센터
                         </p>
                     </div>

@@ -63,7 +63,7 @@ const Login = () => {
                         name='id'
                         value={values.id}
                         onChange={handleChange}
-                        className="h-12 my-3 border-b-2 border-gray-400 border-solid w-72 md:w-96"
+                        className="h-12 my-3 border-b border-[#4F4F4F] border-solid w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
                         placeholder='ID'
                         ref={focusRef}
                     />
@@ -74,18 +74,18 @@ const Login = () => {
                         value={values.password}
                         onChange={handleChange}
                         onKeyDown={onEnter}
-                        className="h-12 my-3 border-b-2 border-gray-400 border-solid w-72 md:w-96"
+                        className="h-12 my-3 border-b border-[#4F4F4F] border-solid w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
                         placeholder='Password'
                     />
                 </div>
                 <div className='flex mb-20 space-x-5 md:space-x-24'>
                     <div className='flex'>
                         <input type="checkbox" name="" id="" />
-                        <p className='mx-1 text-sm'>아이디 기억하기</p>
+                        <p className='mx-1 text-sm text-[#4F4F4F]'>아이디 기억하기</p>
                     </div>
-                    <div className='space-x-2 text-xs md:text-sm'>
-                        <Link to='/findId' className='border-b-2 text-slate-800 border-slate-400'>아이디 찾기</Link>
-                        <Link to='/findPw' className='border-b-2 text-slate-800 border-slate-400'>비밀번호 찾기</Link>
+                    <div className='space-x-2 text-xs md:text-sm text-[#4F4F4F]'>
+                        <Link to='/findId' className='border-b border-[#4F4F4F] text-[#4F4F4F]'>아이디 찾기</Link>
+                        <Link to='/findPw' className='border-b  border-[#4F4F4F] text-[#4F4F4F]'>비밀번호 찾기</Link>
                     </div>
                 </div>
                 <button onClick={handleSubmit}

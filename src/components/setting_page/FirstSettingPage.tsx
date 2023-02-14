@@ -5,6 +5,7 @@ import ChangePersonalInfo from './ChangePersonalInfo'
 import MyPage from './MyPage'
 import Setting from './Setting'
 import UserInfo from './UserInfo'
+import Service from './Service'
 
 const FirstSettingPage = () => {
     return (
@@ -20,6 +21,7 @@ const FirstSettingPage = () => {
                 <Route path='/userInfo/myPage/*' element={<MyPage />}></Route>
                 <Route path='/userInfo/changeUserInfo/*' element={<ChangePersonalInfo />}></Route>
                 <Route path='/alarmSetting/*' element={<AlarmSetting />}></Route>
+                <Route path='/service/*' element={<Service />}></Route>
             </Routes>
             <div className='h-72'></div>
         </div>

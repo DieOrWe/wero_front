@@ -19,7 +19,7 @@ const MainPage = () => {
             const currentMinute = currentDate.getMinutes();
 
             if (
-                (currentHour === 12 && currentMinute === 9) ||
+                (currentHour === 12 && currentMinute === 0) ||
                 (currentHour === 0 && currentMinute === 0)
             ) {
                 setNotify("Notification_notified_btm");

@@ -18,6 +18,8 @@ const WriteLetter = () => {
   const handleClick = () => {
     if (letter.content.length > 255) {
       alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
+    } else if (letter.title.length > 30) {
+      alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
     } else {
       let now = new Date();
       let todayYear = now.getFullYear();

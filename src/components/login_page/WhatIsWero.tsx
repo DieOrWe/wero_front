@@ -11,22 +11,29 @@ const WhatIsWero = () => {
 
     return (
         <div className="flex">
-            <div
-                onClick={handleOpen}
-                className="text-sm border-b-2 border-black"
-            >
-                {" "}
-                WeRo가 뭔가요?
+            <div>
+                <div
+                    onClick={handleOpen}
+                    className="text-xl border-b-2 border-black"
+                >
+                    WeRo가 뭔가요?
+                </div>
+                <div
+                    onClick={handleOpen}
+                    className="text-xl border-b-2 border-black"
+                >
+                    반드시 눌러보세요!!!
+                </div>
             </div>
 
             {show && (
                 <div className="modal">
                     <div className="overlay">
                         <div className="w-20 modal-content">
-                            <div className="flex justify-between pb-4 text-lg font-bold border-b-4 border-black">
+                            <div className="flex justify-between text-3xl font-bold border-b-4 border-black">
                                 <p>WeRo에 오신 것을 환영해요!</p>
                                 <button
-                                    className="w-8 bg-slate-300 rounded-xl"
+                                    className="w-14 h-10 bg-slate-300 rounded-xl"
                                     onClick={handleClose}
                                 >
                                     X

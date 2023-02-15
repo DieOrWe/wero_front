@@ -4,6 +4,7 @@ import { HashRouter, Link, Route, Routes } from "react-router-dom";
 import LetterStorge from "./letter_storge/LetterStorge";
 import FirstSettingPage from "./setting_page/FirstSettingPage";
 import WriteLetter from "./write_letter/WriteLetter";
+import { createBrowserHistory } from "history";
 
 const MainPage = () => {
     const [notify, setNotify] = useState("Notification");
@@ -27,6 +28,16 @@ const MainPage = () => {
         }, 60000); // 매 분마다 호출
         return () => clearInterval(intervalId);
     }, []);
+    useEffect(() => {
+        const history = createBrowserHistory()
+
+        const unlistenHistoryEvent = history.listen(({ action }) => {
+            if (action === "POP") {
+                document.location.href = "/";
+            }
+        });
+        return unlistenHistoryEvent;
+    })
 
     const handleClose = () => {
         setShow(false);
@@ -144,8 +155,8 @@ const MainPage = () => {
                                     WeRo 이용 가이드
                                 </p>
                                 <button
+                                    className="w-14 h-10 bg-slate-300 rounded-xl"
                                     onClick={handleClose}
-                                    className="text-2xl"
                                 >
                                     X
                                 </button>

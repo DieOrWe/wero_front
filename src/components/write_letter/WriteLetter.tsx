@@ -7,6 +7,14 @@ const WriteLetter = () => {
     content: "",
     isCheck: false,
   });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    setLetter({
+      ...letter,
+      [e.target.name]: e.target.value,
+    });
+  };
   const handleClick = () => {
     if (letter.content.length > 255) {
       alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');

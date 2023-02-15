@@ -4,46 +4,47 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const BaseUrl = "http://localhost:5000/api/user/login";
 
-  const focusRef = useRef<HTMLInputElement>(null);
 
-  const [values, setValues] = useState({
-    id: "",
-    password: "",
-  });
+    const focusRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
+    const [values, setValues] = useState({
+        id: "",
+        password: "",
     });
-  };
 
-  const handleSubmit = () => {
-    fetch(BaseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userCreatedWhen: "",
-        userEmail: "",
-        userId: values.id,
-        userNickName: "",
-        userNotify: true,
-        userPw: values.password,
-      }),
-    })
-      .then((resp) => resp.json())
-      .then((resp) => {
-        if (Object.keys(resp).includes("message")) {
-          alert(resp.message);
-        } else {
-          localStorage.setItem("token", resp.token);
-          localStorage.setItem("user_id", values.id);
-          document.location.href = "/";
-        }
-      });
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = () => {
+        fetch(BaseUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userCreatedWhen: "",
+                userEmail: "",
+                userId: values.id,
+                userNickName: "",
+                userNotify: true,
+                userPw: values.password,
+            }),
+        })
+            .then((resp) => resp.json())
+            .then((resp) => {
+                if (Object.keys(resp).includes("message")) {
+                    alert(resp.message);
+                } else {
+                    localStorage.setItem("token", resp.token);
+                    localStorage.setItem("user_id", values.id);
+                    document.location.href = "/";
+                }
+            });
+    };
 
   useEffect(() => {
     focusRef.current!.focus();

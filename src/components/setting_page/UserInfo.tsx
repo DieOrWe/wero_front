@@ -1,13 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
     return (
         <div>
-            <div className='flex flex-col mt-8 mx-20'>
-                <div className='flex items-center mb-6'>
-                    <img className='w-7 h-7 md:w-auto md:h-auto' src="img/PersonalSettings.png" alt="" />
-                    <p className='text-lg md:text-xl font-bold ml-1'>회원정보</p>
+            <div className="flex flex-col mx-20 mt-8">
+                <div className="flex items-center mb-6">
+                    <img
+                        className="w-7 h-7 md:w-auto md:h-auto"
+                        src="img/PersonalSettings.png"
+                        alt=""
+                    />
+                    <p className="ml-1 text-lg font-bold md:text-xl">
+                        회원정보
+                    </p>
                 </div>
                 <div className='mb-7 w-28 h-8 md:w-40 md:h-10 rounded-lg bg-gray-100 items-center'>
                     <Link to={'/setting'} className='flex justify-center items-center w-full h-full'>
@@ -34,11 +40,10 @@ const UserInfo = () => {
                         </div>
                     </div>
                 </Link>
-                </div>
             </div>
-            <div className='mb-44'></div>
+            <div className="mb-44"></div>
         </div>
-    )
-}
+    );
+};
 
-export default UserInfo
+export default UserInfo;

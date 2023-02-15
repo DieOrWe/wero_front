@@ -3,15 +3,19 @@ import { Link } from 'react-router-dom';
 import './FindIdPw.css';
 
 const FindId = () => {
+
     const [email, setEmail] = useState('');
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
     const findId = "http://localhost:5000/api/user/data/findId";
+
+
     const handleSubmit = async () => {
         await fetch(findId, {
             method: "POST",
             headers: {
+
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(email)
@@ -64,6 +68,7 @@ const FindId = () => {
             </div>
         </div>
   );
+
 };
 
 export default FindId;

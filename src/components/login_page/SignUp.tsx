@@ -42,76 +42,74 @@ const SignUp = () => {
     return emailRegex.test(email);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-    let isGood = false;
-    if (e.target.name === "id") {
-      isGood = isId(e.target.value);
-    } else if (e.target.name === "password") {
-      isGood = isPassword(e.target.value);
-    } else if (e.target.name === "verifyPassword") {
-      isGood = isVerifyPassword(values.password, e.target.value);
-    } else if (e.target.name === "nickName") {
-      isGood = isNickName(e.target.value);
-    } else if (e.target.name === "eMail") {
-      isGood = isEmail(e.target.value);
-    }
-    setEffectiveness({
-      ...effectiveness,
-      [e.target.name]: isGood,
-    });
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+        });
+        let isGood = false;
+        if (e.target.name === "id") {
+            isGood = isId(e.target.value);
+        } else if (e.target.name === "password") {
+            isGood = isPassword(e.target.value);
+        } else if (e.target.name === "verifyPassword") {
+            isGood = isVerifyPassword(values.password, e.target.value);
+        } else if (e.target.name === "nickName") {
+            isGood = isNickName(e.target.value);
+        } else if (e.target.name === "eMail") {
+            isGood = isEmail(e.target.value);
+        }
+        setEffectiveness({
+            ...effectiveness,
+            [e.target.name]: isGood,
+        });
+    };
 
-  const handleSubmit = async () => {
-    if (
-      effectiveness.id &&
-      effectiveness.password &&
-      effectiveness.verifyPassword &&
-      effectiveness.nickName &&
-      effectiveness.eMail
-    ) {
-      let now = new Date();
-      let todayYear = now.getFullYear();
-      let todayMonth = now.getMonth() + 1;
-      let todayDate = now.getDate();
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
-      const message = await fetch(BaseUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userCreatedWhen: nowDate,
-          userEmail: values.eMail,
-          userId: values.id,
-          userNickName: values.nickName,
-          userNotify: true,
-          userPw: values.password,
-        }),
-      })
-        .then((resp) => resp.json())
-        .then((data) => String(data.message));
-      if (message === "이미 존재하는 ID 입니다.") {
-        alert(message);
-      } else if (message === "이미 존재하는 Email 입니다.") {
-        alert(message);
-      } else {
-        alert("이제 로그인 하여 WeRo를 이용해보세요!!");
-        document.location.href = "/";
-      }
-    } else {
-      alert("아직 완성되지 않은 부분이 있어요!");
-    }
-  };
+    const handleSubmit = async () => {
+        if (
+            effectiveness.id &&
+            effectiveness.password &&
+            effectiveness.verifyPassword &&
+            effectiveness.nickName &&
+            effectiveness.eMail
+        ) {
+            let now = new Date();
+            let todayYear = now.getFullYear();
+            let todayMonth = now.getMonth() + 1;
+            let todayDate = now.getDate();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}`;
+            const message = await fetch(BaseUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userCreatedWhen: nowDate,
+                    userEmail: values.eMail,
+                    userId: values.id,
+                    userNickName: values.nickName,
+                    userNotify: true,
+                    userPw: values.password,
+                }),
+            })
+                .then((resp) => resp.json())
+                .then((data) => String(data.message));
+            if (message === "이미 존재하는 ID 입니다.") {
+                alert(message);
+            } else if (message === "이미 존재하는 Email 입니다.") {
+                alert(message);
+            } else {
+                alert("이제 로그인 하여 WeRo를 이용해보세요!!");
+                document.location.href = "/";
+            }
+        } else {
+            alert("아직 완성되지 않은 부분이 있어요!");
+        }
+    };
 
   useEffect(() => {
     focusRef.current!.focus();
   }, []);
-
-  const commonStyle = "h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2";
 
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -147,6 +145,7 @@ const SignUp = () => {
                                     <p className="font-sans text-sm text-yellow-600">ID는 영어와 숫자만 가능하고 길이는 5~12에요!</p>
                                     : null
                             }
+
                         </div>
                         <div>
                             <input
@@ -179,6 +178,7 @@ const SignUp = () => {
                                     <p className="font-sans text-sm text-yellow-600">비밀번호를 한 번 더 입력해 주세요</p>
                                     : null
                             }
+
                         </div>
                         <div>
                             <input
@@ -244,6 +244,7 @@ const SignUp = () => {
             </div>
             </div>
   );
+};
 };
 
 export default SignUp;

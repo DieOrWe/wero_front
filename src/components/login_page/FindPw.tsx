@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import './FindIdPw.css';
 
 const FindPw = () => {
-  const [values, setValues] = useState({
-    id: "",
-    email: "",
-    password: "",
-  });
+    const [values, setValues] = useState({
+        id: "",
+        email: "",
+        password: "",
+    });
 
-  const [effectiveness, setEffectiveness] = useState({
-    password: false,
-  });
-  const isPassword = (password: string): boolean => {
-    const passwordRegex = /^\w{8,12}$/i;
-    return passwordRegex.test(password);
-  };
+    const [effectiveness, setEffectiveness] = useState({
+        password: false,
+    });
+    const isPassword = (password: string): boolean => {
+        const passwordRegex = /^\w{8,12}$/i;
+        return passwordRegex.test(password);
+    };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -51,6 +51,21 @@ const FindPw = () => {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+        ...values,
+        [e.target.name]: e.target.value,
+    });
+    let isGood = false;
+    if (e.target.name === "password") {
+        isGood = isPassword(e.target.value);
+    }
+    setEffectiveness({
+        ...effectiveness,
+        [e.target.name]: isGood,
+    });
+};
+
     const commonStyle = 'h-12 pl-2 my-3 font-mono text-[#4F4F4F] text-lg w-96 border-b-2';
 
     return (
@@ -77,6 +92,7 @@ const FindPw = () => {
                             onChange={handleChange}
                             className="h-12 gap-2 pl-2 my-3 font-mono text-lg text-[#4F4F4F] border-b border-[#4F4F4F] border-solid w-96 placeholder-[#4F4F4F]"
                             placeholder='E-mail'
+
                         />
                     </div>
                     <div>

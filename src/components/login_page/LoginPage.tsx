@@ -4,8 +4,7 @@ import Login from "./Login";
 import WhatIsWero from "./WhatIsWero";
 
 const LoginPage = () => {
-    const googleLoginUrl =
-        "http://15.165.240.184:5000/api/user/getGoogleAuthUrl";
+    const googleLoginUrl = "/api/user/getGoogleAuthUrl";
     const handleGoogle = () => {
         fetch(googleLoginUrl, {
             method: "GET",
@@ -22,7 +21,7 @@ const LoginPage = () => {
     return (
         <div>
             {/* 왼쪽 로고,문구 */}
-            <div className="absolute mb-12 ml-12 bottom-5 left-10 text-white">
+            <div className="absolute mb-12 ml-12 text-white bottom-5 left-10">
                 <p className="hidden text-gray-300 2xl:inline 2xl:text-3xl 2xl:font-semibold">
                     오늘 하루 힘든 일이 있었나요?
                 </p>
@@ -33,14 +32,14 @@ const LoginPage = () => {
             </div>
 
             <div className="float-right h-screen bg-white">
-                <div className="place-self-start mb-28 ml-5 mt-2">
+                <div className="mt-2 ml-5 place-self-start mb-28">
                     <WhatIsWero />
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <div className="mx-56 md:mx-96"></div>
                     {/* 위에 welcome.. 문구 */}
                     <div className="mb-12">
-                        <p className="mb-4 text-4xl font-bold hidden 2xl:inline">
+                        <p className="hidden mb-4 text-4xl font-bold 2xl:inline">
                             Welcome!
                         </p>
                         <p className="mb-4 text-4xl font-bold 2xl:hidden">
@@ -60,9 +59,9 @@ const LoginPage = () => {
                     <br />
                     {/* or 선 */}
                     <div className="flex items-center my-2 mx-14">
-                        <div className="h-px bg-black w-32 md:w-44"></div>
+                        <div className="w-32 h-px bg-black md:w-44"></div>
                         <p className="px-2">or</p>
-                        <div className="h-px bg-black w-32 md:w-44"></div>
+                        <div className="w-32 h-px bg-black md:w-44"></div>
                     </div>
 
                     {/* 아이디, 비밀번호 입력칸 ~ 로그인버튼 */}

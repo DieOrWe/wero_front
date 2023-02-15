@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-    const BaseUrl = "http://15.165.240.184:5000/api/user/login";
+    const BaseUrl = "/api/user/login";
 
     const focusRef = useRef<HTMLInputElement>(null);
 
@@ -19,40 +19,30 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        // fetch(BaseUrl, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         userCreatedWhen: "",
-        //         userEmail: "",
-        //         userId: values.id,
-        //         userNickName: "",
-        //         userNotify: true,
-        //         userPw: values.password,
-        //     }),
-        // })
-        //     .then((resp) => resp.json())
-        //     .then((resp) => {
-        //         if (Object.keys(resp).includes("message")) {
-        //             alert(resp.message);
-        //         } else {
-        //             // localStorage.setItem("token", resp.token);
-        //             // localStorage.setItem("user_id", values.id);
-        //             console.log();
-
-        //             document.location.href = "/";
-        //         }
-        //     });
-        fetch("http://15.165.240.184:5000/testing", {
-            method: "GET",
+        fetch(BaseUrl, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+                userCreatedWhen: "",
+                userEmail: "",
+                userId: values.id,
+                userNickName: "",
+                userNotify: true,
+                userPw: values.password,
+            }),
         })
-            .then((resp) => resp.text())
-            .then((resp) => console.log(resp));
+            .then((resp) => resp.json())
+            .then((resp) => {
+                if (Object.keys(resp).includes("message")) {
+                    alert(resp.message);
+                } else {
+                    localStorage.setItem("token", resp.token);
+                    localStorage.setItem("user_id", values.id);
+                    document.location.href = "/";
+                }
+            });
     };
 
     useEffect(() => {

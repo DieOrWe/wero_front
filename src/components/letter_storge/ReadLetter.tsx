@@ -20,8 +20,7 @@ interface ReadMail {
 const ReadLetter = () => {
     const [letters, setLetters] = useState<MailData[]>([]);
 
-    const findAllReceivedLetters =
-        "http://15.165.240.184:5000/api/user/myLetters";
+    const findAllReceivedLetters = "/api/user/myLetters";
 
     useEffect(() => {
         fetch(findAllReceivedLetters + `/${localStorage.getItem("user_id")}`, {
@@ -50,8 +49,7 @@ const ReadLetter = () => {
     });
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const findReceivedLetter =
-        "http://15.165.240.184:5000/api/user/myLetters/received";
+    const findReceivedLetter = "/api/user/myLetters/received";
     const handleShow = (data: MailData) => {
         fetch(findReceivedLetter, {
             method: "POST",
@@ -88,8 +86,7 @@ const ReadLetter = () => {
         }
         setDeleteLetters([...deleteLetters, target.id]);
     };
-    const deleteReceivedLetter =
-        "http://15.165.240.184:5000/api/user/myLetters/deleteReceivedUser";
+    const deleteReceivedLetter = "/api/user/myLetters/deleteReceivedUser";
     const handleDelete = async () => {
         await fetch(deleteReceivedLetter, {
             method: "DELETE",

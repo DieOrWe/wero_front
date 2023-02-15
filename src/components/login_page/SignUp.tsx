@@ -110,7 +110,7 @@ const SignUp = () => {
   useEffect(() => {
     focusRef.current!.focus();
   }, []);
-
+    const commonStyle = "h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2";
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             handleSubmit();
@@ -118,8 +118,8 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex flex-col items-center h-screen">
-            <div className="h-screen bg-white">
+        <div className="flex flex-col items-center">
+            <div className="h-full bg-white">
                 <div className="mx-60 md:mx-96"></div>
                 <div className="ml-10 md:ml-44">
                     <div className="mt-24 text-[#4F4F4F]">
@@ -245,6 +245,6 @@ const SignUp = () => {
             </div>
   );
 };
-};
+
 
 export default SignUp;

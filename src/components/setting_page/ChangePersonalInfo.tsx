@@ -192,13 +192,13 @@ const ChangePersonalInfo = () => {
     return (
         <div>
             <div className="flex flex-col mx-20 mt-8">
-                <div className="flex items-center mb-6">
+                <div className="flex items-center space-x-2 mb-6">
                     <img
                         className="w-7 h-7 md:w-auto md:h-auto"
                         src="img/PersonalSettings.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 mr-2 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         회원정보
                     </p>
                     <img
@@ -211,17 +211,16 @@ const ChangePersonalInfo = () => {
                         src="img/ChangePersonalInfo.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         내정보 수정
                     </p>
                 </div>
                 <div className="items-center h-8 bg-gray-100 rounded-lg mb-7 w-28 md:w-40 md:h-10">
                     <Link
                         to={"/setting/userInfo"}
-                        className="flex items-center justify-between w-full h-full"
+                        className="flex items-center justify-center w-full h-full"
                     >
-                        <img src="img/leftArrow.png" alt="" />
-                        <p>뒤로</p>
+                        <p className='text-[#5F5F5F] font-bold'>뒤로</p>
                         <p> </p>
                     </Link>
                 </div>
@@ -270,7 +269,7 @@ const ChangePersonalInfo = () => {
                         <div className="">
                             <button
                                 onClick={handleShowPw}
-                                className="h-12 mt-16 text-black rounded-3xl bg-slate-200 w-44 border-slate-300"
+                                className="h-12 mt-16 rounded-3xl bg-slate-200 w-44 border-slate-300 text-[#5F5F5F] font-bold"
                             >
                                 비밀번호 변경
                             </button>

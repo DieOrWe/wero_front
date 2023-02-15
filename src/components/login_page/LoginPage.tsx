@@ -22,16 +22,17 @@ const LoginPage = () => {
 
 
     return (
-        <div>
-            {/* 왼쪽 로고,문구 */}
-            <div className='absolute bottom-5 left-10 2xl:inline text-[#000000]'>
-                <p className='2xl:inline 2xl:text-3xl 2xl:font-semibold 2xl:mb-10'>
-                    오늘 하루 힘든 일이 있었나요?</p>
-                <div className='2xl:font-extrabold 2xl:inline 2xl:text-[45px]'>
-                    <p className='mt-3'>오늘의 나에게 편지를 쓰고</p>
-                    <p className='mt-1 mb-8'>타인의 편지로 위로 받아가세요</p>
-                </div>
-            </div>
+      <div className="flex justify-between">
+      {/* 왼쪽 로고,문구 */}
+      <div className="w-auto h-56 mb-12 ml-12 place-self-end">
+          <p className=" text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold">
+              오늘 하루 힘든 일이 있었나요?
+          </p>
+          <div className="hidden 2xl:font-extrabold 2xl:inline 2xl:text-5xl">
+              <p className="">오늘의 나에게 편지를 쓰고</p>
+              <p className="mt-2 mb-8">타인의 편지로 위로 받아가세요</p>
+          </div>
+      </div>
 
             <div className='float-right h-screen bg-white'>
                 <div className='place-self-start mb-28 ml-5 mt-2'>
@@ -64,7 +65,7 @@ const LoginPage = () => {
             <p>아직 회원이 아니신가요?</p>
             <Link
               to="/signUp"
-              className="border-b-2 text-slate-400 border-slate-400 text-[#4F4F4F]" 
+              className="border-b border-[#4F4F4F] text-[#4F4F4F]" 
             >
               여기서 회원가입 하세요!
             </Link>

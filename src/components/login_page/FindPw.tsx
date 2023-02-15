@@ -17,20 +17,6 @@ const FindPw = () => {
         return passwordRegex.test(password);
     };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
-    let isGood = false;
-    if (e.target.name === "password") {
-      isGood = isPassword(e.target.value);
-    }
-    setEffectiveness({
-      ...effectiveness,
-      [e.target.name]: isGood,
-    });
-  };
 
   const findPw = "http://localhost:5000/api/user/data/findPw";
   const handleSubmit = () => {

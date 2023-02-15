@@ -43,17 +43,17 @@ const MyPage = () => {
     return (
         <div>
             <div className="flex flex-col mx-20 mt-8">
-                <div className="flex items-center mb-6">
+                <div className="flex items-center space-x-2 mb-6">
                     <img
                         className="w-7 h-7 md:w-auto md:h-auto"
                         src="img/PersonalSettings.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         회원정보
                     </p>
                     <img
-                        className="w-2 mx-1 md:w-3"
+                        className="w-1/6 mx-1 md:w-3"
                         src="img/arrow.png"
                         alt=""
                     />
@@ -62,17 +62,16 @@ const MyPage = () => {
                         src="img/MyPage.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         마이페이지
                     </p>
                 </div>
                 <div className="items-center h-8 bg-gray-100 rounded-lg mb-7 w-28 md:w-40 md:h-10">
                     <Link
                         to={"/setting/userInfo"}
-                        className="flex items-center justify-between w-full h-full"
+                        className="flex items-center justify-center w-full h-full"
                     >
-                        <img src="img/leftArrow.png" alt="" />
-                        <p>뒤로</p>
+                        <p className='text-[#5F5F5F] font-bold'>뒤로</p>
                         <p> </p>
                     </Link>
                 </div>
@@ -94,7 +93,7 @@ const MyPage = () => {
                     onClick={handleShow}
                     className="flex items-center justify-center h-8 mt-10 bg-gray-100 rounded-lg place-self-center w-28 md:w-40 md:h-10"
                 >
-                    <p>탈퇴하기</p>
+                    <p className='text-[#5F5F5F] font-bold'>탈퇴하기</p>
                 </div>
             </div>
             <div className="mb-56"></div>

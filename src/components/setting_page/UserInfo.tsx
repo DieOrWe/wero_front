@@ -11,17 +11,17 @@ const UserInfo = () => {
                         src="img/PersonalSettings.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         회원정보
                     </p>
                 </div>
                 <div className='mb-7 w-28 h-8 md:w-40 md:h-10 rounded-lg bg-gray-100 items-center'>
                     <Link to={'/setting'} className='flex justify-center items-center w-full h-full'>
-                        <p className='font-bold'>뒤로</p>
+                        <p className='font-bold text-[#5F5F5F]'>뒤로</p>
                         <p> </p>
                     </Link>
                 </div>
-                <div className='flex flex-col space-y-2 mx-24'>
+                <div className='flex flex-col space-y-2 mx-12'>
                 <Link to={'/setting/userInfo/myPage'}>
                     <div className='flex mb-2 justify-center items-center w-full h-16 rounded-lg bg-gray-100'>
                         <p> </p>
@@ -43,6 +43,7 @@ const UserInfo = () => {
             </div>
             <div className="mb-44"></div>
         </div>
+    </div>
     );
 };
 

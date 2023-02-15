@@ -8,7 +8,7 @@ const SimpleSlider = () => {
         dots: true,
         infinite: true,
         speed: 500,
-        autoplaySpeed: 7000,
+        autoplaySpeed: 6000,
         autoplay: true,
         arrows: false,
     };

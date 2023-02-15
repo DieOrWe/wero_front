@@ -17,7 +17,7 @@ const WriteLetter = () => {
   };
   const handleClick = () => {
     if (letter.content.length > 255) {
-      alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
+      alert('편지 제목은 최대 30자 만큼 쓸 수 있습니다.');
     } else if (letter.title.length > 30) {
       alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
     } else {
@@ -104,7 +104,7 @@ const WriteLetter = () => {
               name=""
               id="open"
             />
-            <label htmlFor="open ">편지 공개</label>
+            <label htmlFor="open">편지 공개</label>
           </div>
           <button
             onClick={handleClick}

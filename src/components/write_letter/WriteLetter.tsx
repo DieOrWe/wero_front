@@ -18,48 +18,48 @@ const WriteLetter = () => {
   const handleClick = () => {
     if (letter.content.length > 255) {
       alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
-      return null;
+    } else {
+      let now = new Date();
+      let todayYear = now.getFullYear();
+      let todayMonth: number | string = now.getMonth() + 1;
+      if (todayMonth < 10) {
+        todayMonth = `0${todayMonth}`
+      }
+      let todayDate: number | string = now.getDate();
+      if (todayDate < 10) {
+        todayDate = `0${todayDate}`
+      }
+      let hours: number | string = now.getHours();
+      if (hours < 10) {
+        hours = `0${hours}`
+      }
+      let minutes: number | string = now.getMinutes();
+      if (minutes < 10) {
+        minutes = `0${minutes}`
+      }
+      let seconds: number | string = now.getSeconds();
+      if (seconds < 10) {
+        seconds = `0${seconds}`
+      }
+      const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}:${seconds}`;
+      fetch(BaseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          myLetterId: `${localStorage.getItem("user_id")}-${letter.title}`,
+          writerId: localStorage.getItem("user_id"),
+          myLetterTitle: letter.title,
+          myLetterContent: letter.content,
+          myLetterCreatedWhen: nowDate,
+          myLetterIsPrivate: !letter.isCheck,
+        }),
+      });
+      alert("전송이 완료되었습니다!");
+      document.location.href = "/";
     }
-    let now = new Date();
-    let todayYear = now.getFullYear();
-    let todayMonth: number | string = now.getMonth() + 1;
-    if (todayMonth < 10) {
-      todayMonth = `0${todayMonth}`
-    }
-    let todayDate: number | string = now.getDate();
-    if (todayDate < 10) {
-      todayDate = `0${todayDate}`
-    }
-    let hours: number | string = now.getHours();
-    if (hours < 10) {
-      hours = `0${hours}`
-    }
-    let minutes: number | string = now.getMinutes();
-    if (minutes < 10) {
-      minutes = `0${minutes}`
-    }
-    let seconds: number | string = now.getSeconds();
-    if (seconds < 10) {
-      seconds = `0${seconds}`
-    }
-    const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}:${seconds}`;
-    fetch(BaseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        myLetterId: `${localStorage.getItem("user_id")}-${letter.title}`,
-        writerId: localStorage.getItem("user_id"),
-        myLetterTitle: letter.title,
-        myLetterContent: letter.content,
-        myLetterCreatedWhen: nowDate,
-        myLetterIsPrivate: !letter.isCheck,
-      }),
-    });
-    alert("전송이 완료되었습니다!");
-    document.location.href = "/";
   };
   const handleCheck = () => {
     setLetter({

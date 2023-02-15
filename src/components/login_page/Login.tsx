@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const BaseUrl = "/api/user/login";
+  const BaseUrl = "http://localhost:5000/api/user/login";
 
   const focusRef = useRef<HTMLInputElement>(null);
 
@@ -56,7 +56,6 @@ const Login = () => {
   };
 
   return (
-    <div>
       <div className="flex flex-col items-center">
         <div>
             <div className='flex flex-col items-center'>
@@ -95,44 +94,6 @@ const Login = () => {
                 >Log In</button>
             </div>
         </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            onKeyDown={onEnter}
-            className="h-12 my-3 border-b-2 border-gray-400 border-solid w-72 md:w-96"
-            placeholder="Password"
-          />
-        </div>
-        <div className="flex mb-20 space-x-5 md:space-x-24">
-          <div className="flex">
-            <input type="checkbox" name="" id="" />
-            <p className="mx-1 text-sm">아이디 기억하기</p>
-          </div>
-          <div className="space-x-2 text-xs md:text-sm">
-            <Link
-              to="/findId"
-              className="border-b-2 text-slate-800 border-slate-400"
-            >
-              아이디 찾기
-            </Link>
-            <Link
-              to="/findPw"
-              className="border-b-2 text-slate-800 border-slate-400"
-            >
-              비밀번호 찾기
-            </Link>
-          </div>
-        </div>
-        <button
-          onClick={handleSubmit}
-          className="h-10 text-white bg-black rounded-md w-72 md:w-96 border-slate-300"
-        >
-          Log In
-        </button>
-      </div>
     </div>
   );
 };

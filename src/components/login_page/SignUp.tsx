@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
-  const BaseUrl = "/api/user";
+  const BaseUrl = "http://localhost:5000/api/user";
   const focusRef = useRef<HTMLInputElement>(null);
   const [values, setValues] = useState({
     id: "",
@@ -232,8 +232,7 @@ const SignUp = () => {
                     }
                     <button
                         onClick={handleSubmit}
-                        className="mt-16 bg-black rounded-md h-14 text-slate-200 w-96 border-slate-300"
-                    >
+                        className="mt-16 bg-black rounded-md h-14 text-slate-200 w-96 border-slate-300">
                         Sign Up
                     </button>
                     <div className="flex mb-20">

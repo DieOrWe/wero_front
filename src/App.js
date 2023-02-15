@@ -24,7 +24,7 @@ const App = props => {
           <MainPage /> :
           <BrowserRouter>
             <Routes>
-              <Route path='/' element={< LoginPage />} />
+              < Route path='/' element={< LoginPage />} />
               < Route path='/signUp' element={< SignUp />} />
               < Route path='/findId' element={< FindId />} />
               < Route path='/findPw' element={< FindPw />} />

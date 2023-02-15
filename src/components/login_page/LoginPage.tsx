@@ -24,10 +24,10 @@ const LoginPage = () => {
     return (
         <div>
             {/* 왼쪽 로고,문구 */}
-            <div className='absolute mb-9 ml-10 bottom-1 left-6 text-[#000000]'>
-                <p className='hidden text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold 2xl:mb-10'>
+            <div className='absolute bottom-5 left-10 2xl:inline text-[#000000]'>
+                <p className='2xl:inline 2xl:text-3xl 2xl:font-semibold 2xl:mb-10'>
                     오늘 하루 힘든 일이 있었나요?</p>
-                <div className='hidden 2xl:font-extrabold 2xl:inline 2xl:text-[45px]'>
+                <div className='2xl:font-extrabold 2xl:inline 2xl:text-[45px]'>
                     <p className='mt-3'>오늘의 나에게 편지를 쓰고</p>
                     <p className='mt-1 mb-8'>타인의 편지로 위로 받아가세요</p>
                 </div>
@@ -41,8 +41,8 @@ const LoginPage = () => {
                     <div className='mx-56 md:mx-96'></div>
                     {/* 위에 welcome.. 문구 */}
                     <div className='mb-12'>
-                        <p className='mb-4 text-4xl font-bold text-[#4F4F4F]  hidden 2xl:inline'>Welcome!</p>
-                        <p className='mb-4 text-4xl font-bold text-[#4F4F4F]  2xl:hidden'>WeRo</p>
+                        <p className='mb-4 text-4xl font-bold text-[#5F5F5F]  hidden 2xl:inline'>Welcome!</p>
+                        <p className='mb-4 text-4xl font-bold text-[#5F5F5F]  2xl:hidden'>WeRo</p>
                         <p className='font-medium'>반가워요! 자세한 내용을 들려주시겠어요?</p>
                     </div>
                     {/* 구글로 로그인 */}

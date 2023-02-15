@@ -21,7 +21,7 @@ const WhatIsWero = () => {
 
             {show && (
                 <div className="modal">
-                    <div className="overlay" onClick={handleClose}>
+                    <div className="overlay">
                         <div className="w-20 modal-content">
                             <div className="flex justify-between pb-4 text-lg font-bold border-b-4 border-black">
                                 <p>WeRo에 오신 것을 환영해요!</p>

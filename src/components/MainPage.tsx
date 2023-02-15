@@ -137,7 +137,7 @@ const MainPage = () => {
 
             {show && (
                 <div className="modal">
-                    <div className="overlay" onClick={handleClose}>
+                    <div className="overlay">
                         <div className="modal-content">
                             <div className="flex justify-between">
                                 <p className="text-3xl font-bold">

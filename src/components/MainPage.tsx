@@ -28,6 +28,7 @@ const MainPage = () => {
         }, 60000); // 매 분마다 호출
         return () => clearInterval(intervalId);
     }, []);
+    
     useEffect(() => {
         const history = createBrowserHistory()
 

@@ -72,13 +72,13 @@ const WriteLetter = () => {
 
   return (
     <div>
-      <div className="flex mt-8 mb-3 ml-10 text-2xl font-bold md:text-3xl md:mt-14">
+      <div className="flex mt-8 mb-3 ml-10 text-2xl font-bold md:text-3xl md:mt-14 h-fit">
         <img
           src="img/Write.png"
           alt=""
           className="w-8 h-8 ml-4 mr-2 md:ml-0 md:w-10 md:h-10 "
         />
-        <h1>편지 쓰기</h1>
+        <h1 className='text-[#5F5F5F]'>편지 쓰기</h1>
       </div>
       <div className="mx-20 mt-10 md:mt-16">
         <input
@@ -104,7 +104,7 @@ const WriteLetter = () => {
               name=""
               id="open"
             />
-            <label htmlFor="open">편지 공개</label>
+            <label htmlFor="open ">편지 공개</label>
           </div>
           <button
             onClick={handleClick}

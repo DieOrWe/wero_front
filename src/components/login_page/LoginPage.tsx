@@ -74,7 +74,7 @@ const LoginPage = () => {
                         <p>아직 회원이 아니신가요?</p>
                         <Link
                             to="/signUp"
-                            className="border-b-2 text-slate-400 border-slate-400 text-[#4F4F4F]"
+                            className="border-b border-[#4F4F4F] text-[#4F4F4F]"
                         >
                             여기서 회원가입 하세요!
                         </Link>

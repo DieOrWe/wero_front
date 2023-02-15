@@ -110,7 +110,6 @@ const SignUp = () => {
     useEffect(() => {
         focusRef.current!.focus();
     }, []);
-
     const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             handleSubmit();

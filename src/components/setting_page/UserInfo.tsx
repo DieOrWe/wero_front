@@ -11,7 +11,7 @@ const UserInfo = () => {
                         src="img/PersonalSettings.png"
                         alt=""
                     />
-                    <p className="ml-1 text-lg font-bold md:text-xl">
+                    <p className="ml-1 text-lg font-bold md:text-xl text-[#5F5F5F]">
                         회원정보
                     </p>
                 </div>
@@ -20,11 +20,11 @@ const UserInfo = () => {
                         to={"/setting"}
                         className="flex items-center justify-center w-full h-full"
                     >
-                        <p className="font-bold">뒤로</p>
+                        <p className="font-bold text-[#5F5F5F]">뒤로</p>
                         <p> </p>
                     </Link>
                 </div>
-                <div className="flex flex-col mx-24 space-y-2">
+                <div className="flex flex-col mx-12 space-y-2">
                     <Link to={"/setting/userInfo/myPage"}>
                         <div className="flex items-center justify-center w-full h-16 mb-2 bg-gray-100 rounded-lg">
                             <p> </p>

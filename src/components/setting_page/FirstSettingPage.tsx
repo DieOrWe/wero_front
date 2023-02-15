@@ -12,7 +12,7 @@ const FirstSettingPage = () => {
         <div>
             <div className='flex mb-3 ml-10 text-3xl font-bold mt-14'>
                 <img src="img/Setting.png" alt="" className='w-10 mr-2' />
-                <h1>설정</h1>
+                <h1 className='text-[#5F5F5F]'>설정</h1>
             </div>
             <Link to={'/'}></Link>
             <Routes>

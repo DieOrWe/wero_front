@@ -18,7 +18,7 @@ const MainPage = () => {
             const currentHour = currentDate.getHours();
             const currentMinute = currentDate.getMinutes();
 
-            if ((currentHour === 12 && currentMinute === 9) || (currentHour === 0 && currentMinute === 0)) {
+            if ((currentHour === 12 && currentMinute === 0) || (currentHour === 0 && currentMinute === 0)) {
                 setNotify('Notification_notified_btm')
             }
         }, 60000); // 매 분마다 호출

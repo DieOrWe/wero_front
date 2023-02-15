@@ -22,11 +22,26 @@ const WriteLetter = () => {
     }
     let now = new Date();
     let todayYear = now.getFullYear();
-    let todayMonth = now.getMonth() + 1;
-    let todayDate = now.getDate();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
+    let todayMonth: number | string = now.getMonth() + 1;
+    if (todayMonth < 10) {
+      todayMonth = `0${todayMonth}`
+    }
+    let todayDate: number | string = now.getDate();
+    if (todayDate < 10) {
+      todayDate = `0${todayDate}`
+    }
+    let hours: number | string = now.getHours();
+    if (hours < 10) {
+      hours = `0${hours}`
+    }
+    let minutes: number | string = now.getMinutes();
+    if (minutes < 10) {
+      minutes = `0${minutes}`
+    }
+    let seconds: number | string = now.getSeconds();
+    if (seconds < 10) {
+      seconds = `0${seconds}`
+    }
     const nowDate = `${todayYear}-${todayMonth}-${todayDate} ${hours}:${minutes}:${seconds}`;
     fetch(BaseUrl, {
       method: "POST",

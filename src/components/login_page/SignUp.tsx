@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
-    const BaseUrl = "http://localhost:8080/api/user";
+    const BaseUrl = "http://15.165.240.184:5000/api/user";
     const focusRef = useRef<HTMLInputElement>(null);
     const [values, setValues] = useState({
         id: "",
@@ -18,28 +18,27 @@ const SignUp = () => {
         verifyPassword: false,
         nickName: false,
         eMail: false,
-    })
+    });
     const isId = (id: string): boolean => {
-        const idRegex =
-            /^\w{5,12}$/i;
+        const idRegex = /^\w{5,12}$/i;
         return idRegex.test(id);
     };
     const isPassword = (password: string): boolean => {
-        const passwordRegex =
-            /^\w{8,12}$/i;
+        const passwordRegex = /^\w{8,12}$/i;
         return passwordRegex.test(password);
     };
-    const isVerifyPassword = (password: string, verifyPassword: string): boolean => {
+    const isVerifyPassword = (
+        password: string,
+        verifyPassword: string
+    ): boolean => {
         return password === verifyPassword;
     };
     const isNickName = (nickName: string): boolean => {
-        const nickNameRegex =
-            /^[가-힣a-zA-Z0-9]{2,}$/;
+        const nickNameRegex = /^[가-힣a-zA-Z0-9]{2,}$/;
         return nickNameRegex.test(nickName);
     };
     const isEmail = (email: string): boolean => {
-        const emailRegex =
-            /^[a-z0-9_+.-]{3,}@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/i;
+        const emailRegex = /^[a-z0-9_+.-]{3,}@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/i;
         return emailRegex.test(email);
     };
 
@@ -49,25 +48,31 @@ const SignUp = () => {
             [e.target.name]: e.target.value,
         });
         let isGood = false;
-        if (e.target.name === 'id') {
+        if (e.target.name === "id") {
             isGood = isId(e.target.value);
-        } else if (e.target.name === 'password') {
+        } else if (e.target.name === "password") {
             isGood = isPassword(e.target.value);
-        } else if (e.target.name === 'verifyPassword') {
+        } else if (e.target.name === "verifyPassword") {
             isGood = isVerifyPassword(values.password, e.target.value);
-        } else if (e.target.name === 'nickName') {
+        } else if (e.target.name === "nickName") {
             isGood = isNickName(e.target.value);
-        } else if (e.target.name === 'eMail') {
+        } else if (e.target.name === "eMail") {
             isGood = isEmail(e.target.value);
         }
         setEffectiveness({
             ...effectiveness,
             [e.target.name]: isGood,
-        })
+        });
     };
 
     const handleSubmit = async () => {
-        if (effectiveness.id && effectiveness.password && effectiveness.verifyPassword && effectiveness.nickName && effectiveness.eMail) {
+        if (
+            effectiveness.id &&
+            effectiveness.password &&
+            effectiveness.verifyPassword &&
+            effectiveness.nickName &&
+            effectiveness.eMail
+        ) {
             let now = new Date();
             let todayYear = now.getFullYear();
             let todayMonth = now.getMonth() + 1;
@@ -87,18 +92,18 @@ const SignUp = () => {
                     userPw: values.password,
                 }),
             })
-                .then(resp => resp.json())
-                .then(data => String(data.message));
-            if (message === '이미 존재하는 ID 입니다.') {
+                .then((resp) => resp.json())
+                .then((data) => String(data.message));
+            if (message === "이미 존재하는 ID 입니다.") {
                 alert(message);
-            } else if (message === '이미 존재하는 Email 입니다.') {
+            } else if (message === "이미 존재하는 Email 입니다.") {
                 alert(message);
             } else {
                 alert("이제 로그인 하여 WeRo를 이용해보세요!!");
                 document.location.href = "/";
             }
         } else {
-            alert('아직 완성되지 않은 부분이 있어요!')
+            alert("아직 완성되지 않은 부분이 있어요!");
         }
     };
 
@@ -112,7 +117,7 @@ const SignUp = () => {
         }
     };
 
-    const commonStyle = 'h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2';
+    const commonStyle = "h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2";
 
     return (
         <div className="flex flex-col items-center">
@@ -132,16 +137,19 @@ const SignUp = () => {
                                 name="id"
                                 value={values.id}
                                 onChange={handleChange}
-                                className={effectiveness.id ?
-                                    `${commonStyle} border-gray-400 border-solid` : `${commonStyle} border-red-700 border-solid`}
-                                placeholder='ID'
+                                className={
+                                    effectiveness.id
+                                        ? `${commonStyle} border-gray-400 border-solid`
+                                        : `${commonStyle} border-red-700 border-solid`
+                                }
+                                placeholder="ID"
                                 ref={focusRef}
                             />
-                            {
-                                effectiveness.id === false ?
-                                    <p className="font-sans text-sm text-yellow-600">ID는 영어와 숫자만 가능하고 길이는 5~12에요!</p>
-                                    : null
-                            }
+                            {effectiveness.id === false ? (
+                                <p className="font-sans text-sm text-yellow-600">
+                                    ID는 영어와 숫자만 가능하고 길이는 5~12에요!
+                                </p>
+                            ) : null}
                         </div>
                         <div>
                             <input
@@ -149,15 +157,19 @@ const SignUp = () => {
                                 name="password"
                                 value={values.password}
                                 onChange={handleChange}
-                                className={effectiveness.password ?
-                                    `${commonStyle} border-gray-400 border-solid` : `${commonStyle} border-red-700 border-solid`}
-                                placeholder='Password'
+                                className={
+                                    effectiveness.password
+                                        ? `${commonStyle} border-gray-400 border-solid`
+                                        : `${commonStyle} border-red-700 border-solid`
+                                }
+                                placeholder="Password"
                             />
-                            {
-                                effectiveness.password === false ?
-                                    <p className="font-sans text-sm text-yellow-600">비밀번호는 영어와 숫자만 가능하고 8~12로 해주세요!</p>
-                                    : null
-                            }
+                            {effectiveness.password === false ? (
+                                <p className="font-sans text-sm text-yellow-600">
+                                    비밀번호는 영어와 숫자만 가능하고 8~12로
+                                    해주세요!
+                                </p>
+                            ) : null}
                         </div>
                         <div>
                             <input
@@ -165,15 +177,18 @@ const SignUp = () => {
                                 name="verifyPassword"
                                 value={values.verifyPassword}
                                 onChange={handleChange}
-                                className={effectiveness.verifyPassword ?
-                                    `${commonStyle} border-gray-400 border-solid` : `${commonStyle} border-red-700 border-solid`}
-                                placeholder='VerifyPassword'
+                                className={
+                                    effectiveness.verifyPassword
+                                        ? `${commonStyle} border-gray-400 border-solid`
+                                        : `${commonStyle} border-red-700 border-solid`
+                                }
+                                placeholder="VerifyPassword"
                             />
-                            {
-                                effectiveness.verifyPassword === false ?
-                                    <p className="font-sans text-sm text-yellow-600">비밀번호를 한 번 더 입력해 주세요</p>
-                                    : null
-                            }
+                            {effectiveness.verifyPassword === false ? (
+                                <p className="font-sans text-sm text-yellow-600">
+                                    비밀번호를 한 번 더 입력해 주세요
+                                </p>
+                            ) : null}
                         </div>
                         <div>
                             <input
@@ -181,15 +196,18 @@ const SignUp = () => {
                                 name="nickName"
                                 value={values.nickName}
                                 onChange={handleChange}
-                                className={effectiveness.nickName ?
-                                    `${commonStyle} border-gray-400 border-solid` : `${commonStyle} border-red-700 border-solid`}
-                                placeholder='Nickname'
+                                className={
+                                    effectiveness.nickName
+                                        ? `${commonStyle} border-gray-400 border-solid`
+                                        : `${commonStyle} border-red-700 border-solid`
+                                }
+                                placeholder="Nickname"
                             />
-                            {
-                                effectiveness.nickName === false ?
-                                    <p className="font-sans text-sm text-yellow-600">닉네임은 두 글자 이상으로 정해주세요</p>
-                                    : null
-                            }
+                            {effectiveness.nickName === false ? (
+                                <p className="font-sans text-sm text-yellow-600">
+                                    닉네임은 두 글자 이상으로 정해주세요
+                                </p>
+                            ) : null}
                         </div>
                     </div>
                     <div>
@@ -199,15 +217,18 @@ const SignUp = () => {
                             value={values.eMail}
                             onChange={handleChange}
                             onKeyDown={onEnter}
-                            className={effectiveness.eMail ?
-                                `${commonStyle} border-gray-400 border-solid` : `${commonStyle} border-red-700 border-solid`}
-                            placeholder='E-mail'
+                            className={
+                                effectiveness.eMail
+                                    ? `${commonStyle} border-gray-400 border-solid`
+                                    : `${commonStyle} border-red-700 border-solid`
+                            }
+                            placeholder="E-mail"
                         />
-                        {
-                            effectiveness.eMail === false ?
-                                <p className="font-sans text-sm text-yellow-600">이메일을 정확하게 적어주세요!</p>
-                                : null
-                        }
+                        {effectiveness.eMail === false ? (
+                            <p className="font-sans text-sm text-yellow-600">
+                                이메일을 정확하게 적어주세요!
+                            </p>
+                        ) : null}
                     </div>
                     <div className="flex ml-48 space-x-3 text-base text-slate-600">
                         <p className="border-b-2 border-slate-300">
@@ -217,14 +238,16 @@ const SignUp = () => {
                             비밀번호 찾기
                         </p>
                     </div>
-                    {
-                        (effectiveness.id && effectiveness.password && effectiveness.verifyPassword && effectiveness.nickName && effectiveness.eMail) ?
-                            <div className="mt-10 space-y-2 font-sans text-xl text-stone-500">
-                                <p>이제 WeRo의 회원이 될 준비가 끝났어요!</p>
-                                <p>아래 버튼을 눌러 WeRo의 회원이 되어보세요!</p>
-                            </div>
-                            : null
-                    }
+                    {effectiveness.id &&
+                    effectiveness.password &&
+                    effectiveness.verifyPassword &&
+                    effectiveness.nickName &&
+                    effectiveness.eMail ? (
+                        <div className="mt-10 space-y-2 font-sans text-xl text-stone-500">
+                            <p>이제 WeRo의 회원이 될 준비가 끝났어요!</p>
+                            <p>아래 버튼을 눌러 WeRo의 회원이 되어보세요!</p>
+                        </div>
+                    ) : null}
                     <button
                         onClick={handleSubmit}
                         className="mt-16 bg-black rounded-md h-14 text-slate-200 w-96 border-slate-300"

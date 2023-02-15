@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
-    const BaseUrl = "http://localhost:5000/api/user";
+    const BaseUrl = "/api/user";
     const focusRef = useRef<HTMLInputElement>(null);
     const [values, setValues] = useState({
         id: "",

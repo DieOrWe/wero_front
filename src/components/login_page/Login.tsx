@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const BaseUrl = "http://localhost:5000/api/user/login";
+  const BaseUrl = "/api/user/login";
 
 
     const focusRef = useRef<HTMLInputElement>(null);
@@ -76,7 +76,7 @@ const Login = () => {
                         value={values.password}
                         onChange={handleChange}
                         onKeyDown={onEnter}
-                        className="h-12 my-3 border-b border-[#4F4F4F] border-solid w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
+                        className="h-12 my-3 border-b border-[#4F4F4F] w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
                         placeholder='Password'
                     />
                 </div>
@@ -86,8 +86,8 @@ const Login = () => {
                         <p className='mx-1 text-sm text-[#4F4F4F]'>아이디 기억하기</p>
                     </div>
                     <div className='space-x-2 text-xs md:text-sm text-[#4F4F4F]'>
-                        <Link to='/findId' className='border-b border-[#4F4F4F] text-[#4F4F4F]'>아이디 찾기</Link>
-                        <Link to='/findPw' className='border-b  border-[#4F4F4F] text-[#4F4F4F]'>비밀번호 찾기</Link>
+                        <Link to='/findId' className=' border-[#4F4F4F] text-[#4F4F4F]'>아이디 찾기</Link>
+                        <Link to='/findPw' className=' border-[#4F4F4F] text-[#4F4F4F]'>비밀번호 찾기</Link>
                     </div>
                 </div>
                 <button onClick={handleSubmit}

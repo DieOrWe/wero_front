@@ -32,7 +32,7 @@ const FindPw = () => {
         });
     };
 
-    const findPw = "http://localhost:5000/api/user/data/findPw";
+    const findPw = "/api/user/data/findPw";
     const handleSubmit = () => {
         if (effectiveness.password) {
             fetch(findPw, {

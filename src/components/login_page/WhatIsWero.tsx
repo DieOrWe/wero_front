@@ -21,10 +21,10 @@ const WhatIsWero = () => {
                 <div className="modal">
                     <div className="overlay">
                         <div className="w-20 h-3/4 modal-content">
-                            <div className="flex justify-between text-3xl font-bold border-b-4 border-black">
+                            <div className="flex justify-between text-[26px] font-bold border-b-4 border-black">
                                 <p>WeRo에 오신 것을 환영해요!</p>
                                 <button
-                                    className="h-10 w-14 bg-slate-300 rounded-xl"
+                                    className="h-9 w-10 bg-slate-300 rounded-xl mb-2 text-[22px]"
                                     onClick={handleClose}
                                 >
                                     X

@@ -17,7 +17,7 @@ const WriteLetter = () => {
   };
   const handleClick = () => {
     if (letter.content.length > 255) {
-      alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
+      alert('편지 제목은 최대 30자 만큼 쓸 수 있습니다.');
     } else if (letter.title.length > 30) {
       alert('편지 내용은 최대 255자 만큼 쓸 수 있습니다.');
     } else {
@@ -85,14 +85,14 @@ const WriteLetter = () => {
           type="text"
           onChange={handleChange}
           name="title"
-          className="w-full mb-10 border-b-2 border-slate-500"
+          className="w-full mb-10 border-b-2 border-slate-500 outline-none"
           placeholder="제목"
         />
         <textarea
           onChange={handleChange}
           name="content"
           value={letter.content}
-          className="w-full border-b-2 border-black h-96"
+          className="w-full border-b-2 border-black h-96 outline-none"
           placeholder="오늘의 이야기를 들려주세요. :)"
         />
         <div className="flex items-center justify-between mt-4 space-x-2">
@@ -104,7 +104,7 @@ const WriteLetter = () => {
               name=""
               id="open"
             />
-            <label htmlFor="open ">편지 공개</label>
+            <label htmlFor="open">편지 공개</label>
           </div>
           <button
             onClick={handleClick}

@@ -40,6 +40,22 @@ const MainPage = () => {
         return unlistenHistoryEvent;
     })
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+          if (event.key === "Escape") {
+            setShow(false);
+            localStorage.setItem("pro", "true");
+          }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+          document.removeEventListener("keydown", handleKeyDown);
+        };
+      }, []);
+
+
     const handleClose = () => {
         setShow(false);
         localStorage.setItem("pro", "true");
@@ -66,7 +82,6 @@ const MainPage = () => {
     const onLogout = () => {
         localStorage.removeItem("user_id");
         localStorage.removeItem("token");
-        localStorage.removeItem("pro");
         document.location.href = "/";
     };
 

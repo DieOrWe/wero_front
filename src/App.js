@@ -18,7 +18,7 @@ const App = props => {
   })
 
   return (
-    <div>
+    <div className='font-sans'>
       {
         isLogin ?
           <MainPage /> :

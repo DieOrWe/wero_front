@@ -32,7 +32,7 @@ const FindId = () => {
 
     return (
         <div className='flex flex-col items-center h-screen'>
-            <div className='h-screen bg-white'>
+            <div className='h-screen overflow-y-auto bg-white'>
                 <div className='mx-60 md:mx-96'></div>
                 <div className='ml-10 md:ml-44'>
                     <div className='mt-24 text-[#4F4F4F]'>
@@ -61,13 +61,12 @@ const FindId = () => {
                         className='bg-black rounded-md mt-28 h-14 text-slate-200 w-96 border-slate-300'
                     >Done</button>
                     <div className='flex'>
-                        <p className='mt-20 mb-10 text-sm border-b ml-80 border-[#4F4F4F]'>고객센터</p>
+                        <p className='mt-20 text-sm border-b ml-80 border-[#4F4F4F]'>고객센터</p>
                     </div>
                 </div>
-                <div className='mb-5 h-10'></div>
             </div>
         </div>
-  );
+    );
 
 };
 

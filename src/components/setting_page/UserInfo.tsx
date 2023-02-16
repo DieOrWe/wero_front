@@ -56,7 +56,6 @@ const UserInfo = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="mb-44"></div>
             </div>
         </div>
     );

@@ -114,7 +114,6 @@ const WriteLetter = () => {
           </button>
         </div>
       </div>
-      <div className="h-40 md:h-16"></div>
     </div>
   );
 };

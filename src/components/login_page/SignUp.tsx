@@ -120,7 +120,7 @@ const SignUp = () => {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="h-full bg-white">
+            <div className="h-screen overflow-y-auto bg-white">
                 <div className="mx-60 md:mx-96"></div>
                 <div className="ml-10 md:ml-44">
                     <div className="mt-24 text-[#4F4F4F]">
@@ -236,10 +236,10 @@ const SignUp = () => {
                         </p>
                     </div>
                     {effectiveness.id &&
-                    effectiveness.password &&
-                    effectiveness.verifyPassword &&
-                    effectiveness.nickName &&
-                    effectiveness.eMail ? (
+                        effectiveness.password &&
+                        effectiveness.verifyPassword &&
+                        effectiveness.nickName &&
+                        effectiveness.eMail ? (
                         <div className="mt-10 space-y-2 font-sans text-xl text-stone-500">
                             <p>이제 WeRo의 회원이 될 준비가 끝났어요!</p>
                             <p>아래 버튼을 눌러 WeRo의 회원이 되어보세요!</p>
@@ -251,7 +251,7 @@ const SignUp = () => {
                     >
                         Sign Up
                     </button>
-                    <div className="flex mb-20">
+                    <div className="flex">
                         <p className="mt-3 text-sm border-b ml-80 border-[#4F4F4F]">
                             고객센터
                         </p>

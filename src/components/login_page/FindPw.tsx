@@ -56,7 +56,7 @@ const FindPw = () => {
 
     return (
         <div className="flex flex-col items-center h-screen">
-            <div className="h-screen bg-white">
+            <div className="h-screen overflow-y-auto bg-white">
                 <div className="mx-60 md:mx-96"></div>
                 <div className="ml-10 md:ml-44">
                     <div className="mt-24 text-[#4F4F4F]">
@@ -133,7 +133,7 @@ const FindPw = () => {
                     </button>
                     <div className="flex">
                         <br />
-                        <p className="mt-20 mb-10 text-sm border-b-2 ml-80 border-[#4F4F4F]">
+                        <p className="mt-20 text-sm border-b-2 ml-80 border-[#4F4F4F]">
                             고객센터
                         </p>
                     </div>

@@ -51,7 +51,6 @@ const AlarmSetting = () => {
                     </div>
                 </div>
             </div>
-            <div className='mb-48'></div>
         </div>
     )
 }

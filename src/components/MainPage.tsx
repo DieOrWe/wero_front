@@ -28,7 +28,7 @@ const MainPage = () => {
         }, 60000); // 매 분마다 호출
         return () => clearInterval(intervalId);
     }, []);
-    
+
     useEffect(() => {
         const history = createBrowserHistory()
 
@@ -42,18 +42,18 @@ const MainPage = () => {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-          if (event.key === "Escape") {
-            setShow(false);
-            localStorage.setItem("pro", "true");
-          }
+            if (event.key === "Escape") {
+                setShow(false);
+                localStorage.setItem("pro", "true");
+            }
         };
 
         document.addEventListener("keydown", handleKeyDown);
 
         return () => {
-          document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keydown", handleKeyDown);
         };
-      }, []);
+    }, []);
 
 
     const handleClose = () => {
@@ -88,7 +88,7 @@ const MainPage = () => {
     return (
         <HashRouter>
             <div className="flex justify-center">
-                <div className="h-full bg-white">
+                <div className="h-screen overflow-y-auto bg-white">
                     <div className="mx-56 md:mx-96"></div>
                     <div className="flex justify-end mt-8 mr-8 space-x-3 md:space-x-5">
                         <Link to="/">

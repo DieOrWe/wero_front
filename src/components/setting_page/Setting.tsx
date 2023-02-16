@@ -23,7 +23,7 @@ const Setting = () => {
                         </div>
                     </div>
                 </Link>
-                <Link to={'/setting/userInfo'}>
+                <Link to={'/setting/service'}>
                     <div className='flex justify-center items-center w-full h-16 rounded-lg bg-gray-100'>
                         <p> </p>
                         <div className='flex items-center'>
@@ -33,7 +33,6 @@ const Setting = () => {
                     </div>
                 </Link>
             </div>
-            <div className='mb-40 h-2'></div>
         </div>
     )
 }

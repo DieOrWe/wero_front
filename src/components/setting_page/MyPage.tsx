@@ -96,7 +96,6 @@ const MyPage = () => {
                     <p className='text-[#5F5F5F] font-bold'>탈퇴하기</p>
                 </div>
             </div>
-            <div className="mb-56"></div>
 
             {show && (
                 <div className="modal">

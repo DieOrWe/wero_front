@@ -23,7 +23,6 @@ const FirstSettingPage = () => {
                 <Route path='/alarmSetting/*' element={<AlarmSetting />}></Route>
                 <Route path='/service/*' element={<Service />}></Route>
             </Routes>
-            <div className='h-72'></div>
         </div>
     )
 }

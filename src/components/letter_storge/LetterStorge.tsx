@@ -13,7 +13,7 @@ const LetterStorge = () => {
                 <img src="img/Email.png" alt="" className='mr-2 w-8 md:w-10' />
                 <h1 className=' text-[#5F5F5F]'>편지보관함</h1>
             </div>
-            <br/>
+            <br />
             <div className='flex space-x-2 ml-14 text-sm md:space-x-3 md:text-base'>
                 <NavLink to='/'><p className='font-semi-bold'>받은 편지</p></NavLink>
                 <NavLink to='/read'><p className='font-semi-bold'>읽은 편지</p></NavLink>
@@ -26,7 +26,6 @@ const LetterStorge = () => {
                 <Route path='/notRead/*' element={<NotReadLetter />} />
                 <Route path='/send/*' element={<SendLetter />} />
             </Routes>
-            <div className='h-72 mb-96'></div>
         </div>
     )
 }

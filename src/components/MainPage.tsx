@@ -10,7 +10,7 @@ const MainPage = () => {
     const [notify, setNotify] = useState("Notification");
     const [show, setShow] = useState(true);
     useEffect(() => {
-        if (localStorage.getItem("pro") !== null) {
+        if (localStorage.getItem("pro") !== null || sessionStorage.getItem("pro") !== null) {
             setShow(false);
         }
 
@@ -55,10 +55,17 @@ const MainPage = () => {
         };
     }, []);
 
-
+    const [isCheck, setCheck] = useState(false);
+    const handleCheck = () => {
+        setCheck(!isCheck);
+    }
     const handleClose = () => {
         setShow(false);
-        localStorage.setItem("pro", "true");
+        if (isCheck === true) {
+            localStorage.setItem("pro", "true");
+        } else {
+            sessionStorage.setItem("pro", "true");
+        }
     };
 
     const [topButton, setTopButton] = useState({
@@ -170,12 +177,16 @@ const MainPage = () => {
                                 <p className="text-3xl font-bold">
                                     WeRo 이용 가이드
                                 </p>
-                                <button
-                                    className="w-14 h-10 bg-slate-300 rounded-xl"
-                                    onClick={handleClose}
-                                >
-                                    X
-                                </button>
+                                <div>
+                                    <input type="checkbox" name="check" id="check" onClick={handleCheck} />
+                                    <label htmlFor="check" className="mr-2 ml-1">다시 보지 않기</label>
+                                    <button
+                                        className="w-14 h-10 bg-slate-300 rounded-xl"
+                                        onClick={handleClose}
+                                    >
+                                        X
+                                    </button>
+                                </div>
                             </div>
                             <br />
                             <p className="text-lg font-semibold">
@@ -194,6 +205,7 @@ const MainPage = () => {
                             </p>
                             <img src="img/3.png" alt="" />
                             <img src="img/4.png" alt="" />
+                            <div className="mb-4"></div>
                         </div>
                     </div>
                 </div>

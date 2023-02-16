@@ -20,7 +20,7 @@ const App = props => {
   return (
     <div>
       {
-        isLogin ?
+        !isLogin ?
           <MainPage /> :
           <BrowserRouter>
             <Routes>

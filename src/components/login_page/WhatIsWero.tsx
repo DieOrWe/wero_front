@@ -5,8 +5,8 @@ const WhatIsWero = () => {
     const [show, setShow] = useState(true);
 
     useEffect(() => {
-        const handleKeyDown = (event: { keyCode: number; }) => {
-          if (event.keyCode === 27) {
+        const handleKeyDown = (event: KeyboardEvent) => {
+          if (event.key === "Escape") {
             setShow(false);
           }
         };

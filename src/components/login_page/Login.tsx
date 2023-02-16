@@ -65,7 +65,7 @@ const Login = () => {
                         name='id'
                         value={values.id}
                         onChange={handleChange}
-                        className="h-12 my-3 border-b border-[#4F4F4F] border-solid w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
+                        className="h-12 my-3 border-b border-[#4F4F4F] border-solid w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878] outline-none"
                         placeholder='ID'
                         ref={focusRef}
                     />
@@ -76,14 +76,14 @@ const Login = () => {
                         value={values.password}
                         onChange={handleChange}
                         onKeyDown={onEnter}
-                        className="h-12 my-3 border-b border-[#4F4F4F] w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878]"
+                        className="h-12 my-3 border-b border-[#4F4F4F] w-72 md:w-96 text-[#4F4F4F] placeholder-[#787878] outline-none"
                         placeholder='Password'
                     />
                 </div>
                 <div className='flex mb-20 space-x-5 md:space-x-24'>
                     <div className='flex'>
-                        <input type="checkbox" name="" id="" />
-                        <p className='mx-1 text-sm text-[#4F4F4F]'>아이디 기억하기</p>
+                        <input type="checkbox" name="" id="my-checkbox" />
+                        <label htmlFor="my-checkbox" className="mx-1 text-sm text-[#4F4F4F]" >아이디 기억하기</label>
                     </div>
                     <div className='space-x-2 text-xs md:text-sm text-[#4F4F4F]'>
                         <Link to='/findId' className=' border-[#4F4F4F] text-[#4F4F4F]'>아이디 찾기</Link>

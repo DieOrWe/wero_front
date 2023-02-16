@@ -20,14 +20,15 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex justify-between">
+        <div className="flex place-content-center 2xl:justify-between">
             {/* 왼쪽 로고,문구 */}
-            <div className="w-auto h-56 mb-12 ml-12 place-self-end">
-                <p className=" text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold">
+            
+            <div className="hidden 2xl:inline w-full h-full mb-12 place-self-end bg-gray-100 bg-opacity-50 p-4 rounded-lg mr-96 ml-12 space-y-10">
+                <p className="text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold">
                     오늘 하루 힘든 일이 있었나요?
                 </p>
                 <div className="hidden 2xl:font-extrabold 2xl:inline 2xl:text-5xl">
-                    <p className="">오늘의 나에게 편지를 쓰고</p>
+                    <p className="mt-5">오늘의 나에게 편지를 쓰고</p>
                     <p className="mt-2 mb-8">타인의 편지로 위로 받아가세요</p>
                 </div>
             </div>
@@ -53,9 +54,8 @@ const LoginPage = () => {
                     {/* 구글로 로그인 */}
                     <div
                         onClick={handleGoogle}
-                        className="flex justify-center py-4 border-2 rounded-lg"
                     >
-                        <p className="mx-24">구글로 로그인</p>
+                        <img src="img/btn_google_signin_light_normal_web.png" className="mx-24" />
                     </div>
                     <br />
                     {/* or 선 */}

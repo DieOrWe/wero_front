@@ -85,14 +85,14 @@ const WriteLetter = () => {
           type="text"
           onChange={handleChange}
           name="title"
-          className="w-full mb-10 border-b-2 border-slate-500"
+          className="w-full mb-10 border-b-2 border-slate-500 outline-none"
           placeholder="제목"
         />
         <textarea
           onChange={handleChange}
           name="content"
           value={letter.content}
-          className="w-full border-b-2 border-black h-96"
+          className="w-full border-b-2 border-black h-96 outline-none"
           placeholder="오늘의 이야기를 들려주세요. :)"
         />
         <div className="flex items-center justify-between mt-4 space-x-2">

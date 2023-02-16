@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SimpleSlider from "./SimpleSlider";
 
 const WhatIsWero = () => {
     const [show, setShow] = useState(true);
+
+    useEffect(() => {
+        const handleKeyDown = (event: { keyCode: number; }) => {
+          if (event.keyCode === 27) {
+            setShow(false);
+          }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+          document.removeEventListener("keydown", handleKeyDown);
+        };
+      }, []);
+
     const handleOpen = () => {
         setShow(true);
     };
@@ -21,16 +36,16 @@ const WhatIsWero = () => {
                 <div className="modal">
                     <div className="overlay">
                         <div className="w-20 h-3/4 modal-content">
-                            <div className="flex justify-between text-[26px] font-bold border-b-4 border-black">
+                            <div className="flex justify-between text-[24px] font-bold border-b-4 border-black">
                                 <p>WeRo에 오신 것을 환영해요!</p>
                                 <button
-                                    className="h-9 w-10 bg-slate-300 rounded-xl mb-2 text-[22px]"
+                                    className="h-9 w-10 bg-slate-300 rounded-xl mb-2 text-[20px]"
                                     onClick={handleClose}
                                 >
                                     X
                                 </button>
                             </div>
-                            <div className="flex justify-center mt-4">
+                            <div className="flex justify-center mt-8">
                                 <SimpleSlider />
                             </div>
                         </div>

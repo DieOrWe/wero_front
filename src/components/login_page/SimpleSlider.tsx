@@ -8,7 +8,7 @@ const SimpleSlider = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 3000,
     autoplay: true,
     arrows: false
   };
@@ -24,7 +24,7 @@ const SimpleSlider = () => {
           <h2 className="text-center mt-6 mb-10">
             WeRo는 오늘 하루를 돌아보며 느꼈던 감정들을
             <br />
-            나에게 
+            나에게
             혹은 누군가에게 편지를
             작성하는 서비스예요.
           </h2>
@@ -38,7 +38,7 @@ const SimpleSlider = () => {
             편지를 작성하면 WeRo의 알고리즘을 통해 <br />
             당신의 위로가 필요한
             누군가에게 편지를 전달해요.<br />
-             물론 원한다면 편지를 전달하지 않을
+            물론 원한다면 편지를 전달하지 않을
             수도 있답니다.
           </h2>
         </div>

@@ -6,17 +6,17 @@ const WhatIsWero = () => {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-          if (event.key === "Escape") {
-            setShow(false);
-          }
+            if (event.key === "Escape") {
+                setShow(false);
+            }
         };
 
         document.addEventListener("keydown", handleKeyDown);
 
         return () => {
-          document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keydown", handleKeyDown);
         };
-      }, []);
+    }, []);
 
     const handleOpen = () => {
         setShow(true);
@@ -35,7 +35,7 @@ const WhatIsWero = () => {
             {show && (
                 <div className="modal">
                     <div className="overlay">
-                        <div className="w-20 h-3/4 modal-content">
+                        <div className="w-20 h-3/4 modal-content overflow-auto">
                             <div className="flex justify-between text-[24px] font-bold border-b-4 border-black">
                                 <p>WeRo에 오신 것을 환영해요!</p>
                                 <button

@@ -145,7 +145,7 @@ const ReadLetter = () => {
             {show && (
                 <div className="modal">
                     <div className="overlay" onClick={handleClose}>
-                        <div className="modal-content">
+                        <div className="modal-content overflow-auto">
                             <div className="flex justify-between">
                                 <h1 className="pr-8 mb-5 text-2xl font-semibold border-b-2 border-slate-600">
                                     {letter.letterName}

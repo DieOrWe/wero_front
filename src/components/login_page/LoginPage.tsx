@@ -33,7 +33,7 @@ const LoginPage = () => {
                 </div>
             </div>
 
-            <div className="float-right h-screen bg-white overflow-auto">
+            <div className="float-right h-screen bg-white">
                 <div className="mt-2 ml-5 place-self-start mb-28">
                     <WhatIsWero />
                 </div>

@@ -23,7 +23,7 @@ const LoginPage = () => {
         <div className="flex place-content-center 2xl:justify-between">
             {/* 왼쪽 로고,문구 */}
 
-            <div className="hidden 2xl:inline w-full h-full mb-12 place-self-end bg-gray-100 bg-opacity-50 p-4 rounded-lg mr-96 ml-12 space-y-10">
+            <div className="hidden 2xl:inline w-full h-full mb-12 place-self-end bg-gray-200 bg-opacity-60 p-4 rounded-lg mr-96 ml-12 space-y-10">
                 <p className="text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold">
                     오늘 하루 힘든 일이 있었나요?
                 </p>

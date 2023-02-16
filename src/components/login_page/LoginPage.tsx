@@ -22,7 +22,7 @@ const LoginPage = () => {
 
 
     return (
-      <div className="flex justify-between">
+      <div className="flex justify-between bg-[url('../../../public/img/tomoko-uji-eriuKJwcdjI-unsplash.jpg')]">
       {/* 왼쪽 로고,문구 */}
       <div className="w-auto h-56 mb-12 ml-12 place-self-end">
           <p className=" text-[#000000] 2xl:inline 2xl:text-3xl 2xl:font-semibold">

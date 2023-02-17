@@ -116,6 +116,10 @@ const SignUp = () => {
         }
     };
 
+    const handleCustomer = () => {
+        alert('문의 메일: dlscksgnl@naver.com')
+    }
+
     const commonStyle = "h-12 pl-2 my-3 font-mono text-lg w-96 border-b-2";
 
     return (
@@ -229,12 +233,6 @@ const SignUp = () => {
                             </p>
                         ) : null}
                     </div>
-                    <div className="flex ml-48 space-x-3 text-base text-[#4F4F4F]">
-                        <p className="border-b border-[#4F4F4F]">아이디 찾기</p>
-                        <p className="border-b border-[#4F4F4F]">
-                            비밀번호 찾기
-                        </p>
-                    </div>
                     {effectiveness.id &&
                         effectiveness.password &&
                         effectiveness.verifyPassword &&
@@ -252,7 +250,7 @@ const SignUp = () => {
                         Sign Up
                     </button>
                     <div className="flex">
-                        <p className="mt-3 text-sm border-b ml-80 border-[#4F4F4F]">
+                        <p onClick={handleCustomer} className="mt-3 text-sm border-b ml-80 border-[#4F4F4F]">
                             고객센터
                         </p>
                     </div>

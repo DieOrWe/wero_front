@@ -51,6 +51,10 @@ const FindPw = () => {
         }
     };
 
+    const handleCustomer = () => {
+        alert('문의메일: dlscksgnl@naver.com')
+    }
+
     const commonStyle =
         "h-12 pl-2 my-3 font-mono text-[#4F4F4F] text-lg w-96 border-b-2";
 
@@ -133,7 +137,7 @@ const FindPw = () => {
                     </button>
                     <div className="flex">
                         <br />
-                        <p className="mt-20 text-sm border-b-2 ml-80 border-[#4F4F4F]">
+                        <p onClick={handleCustomer} className="mt-20 text-sm border-b-2 ml-80 border-[#4F4F4F]">
                             고객센터
                         </p>
                     </div>

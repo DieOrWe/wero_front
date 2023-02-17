@@ -30,6 +30,10 @@ const FindId = () => {
             })
     }
 
+    const handleCustomer = () => {
+        alert('문의메일: dlscksgnl@naver.com')
+    }
+
     return (
         <div className='flex flex-col items-center h-screen'>
             <div className='h-screen overflow-y-auto bg-white'>
@@ -60,7 +64,7 @@ const FindId = () => {
                     <button onClick={handleSubmit}
                         className='bg-black rounded-md mt-28 h-14 text-slate-200 w-96 border-slate-300'
                     >Done</button>
-                    <div className='flex'>
+                    <div onClick={handleCustomer} className='flex'>
                         <p className='mt-20 text-sm border-b ml-80 border-[#4F4F4F]'>고객센터</p>
                     </div>
                 </div>
